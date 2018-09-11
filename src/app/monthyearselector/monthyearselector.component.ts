@@ -38,6 +38,9 @@ export class MonthyearselectorComponent implements OnInit {
     console.log('onDateSelected', e);
     this.dateSelected = e;
     this.change.emit(this.dateSelected);
+    if (this.options.closeOnSelect) {
+      this.dropDownToggled = false;
+    }
   }
 
   textInputClick($event: Event) {
