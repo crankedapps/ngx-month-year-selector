@@ -1,0 +1,13 @@
+.dropdown-wrapper {
+    border: 1px solid #000;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    padding: 0.5em;
+    width: 200px;
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+    /* Rules below not implemented in browsers yet */
+    -o-user-select: none;
+    user-select: none;
+}

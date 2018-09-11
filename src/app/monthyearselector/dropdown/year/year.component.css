@@ -1,0 +1,12 @@
+.year-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+.year-label {
+    font-size: 1.2rem;
+}
+.year-nav-link {
+    cursor: pointer;
+}
