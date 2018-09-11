@@ -1,2 +1,2 @@
-<app-textinput [dateSelected]="dateSelected" (click)="textInputClick($event)"></app-textinput>
-<app-dropdown [dateSelected]="dateSelected" (selected)="onDateSelected($event)" [(display)]="dropDownToggled"></app-dropdown>
+<app-textinput [options]="options" [dateSelected]="dateSelected" (click)="textInputClick($event)"></app-textinput>
+<app-dropdown [options]="options" [dateSelected]="dateSelected" (selected)="onDateSelected($event)" [(display)]="dropDownToggled"></app-dropdown>

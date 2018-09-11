@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { IMonthYearSelectorOptions } from '../../../models/IMonthYearSelectorOptions';
 
 @Component({
   selector: 'app-year',
@@ -6,6 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./year.component.css']
 })
 export class YearComponent implements OnInit {
+  @Input() options: IMonthYearSelectorOptions;
   @Input() year: number;
   @Output() yearChange = new EventEmitter();
 

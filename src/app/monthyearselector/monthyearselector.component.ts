@@ -19,8 +19,9 @@ export class MonthyearselectorComponent implements OnInit {
   constructor() {
     this.options = {
       yearMax: (new Date).getFullYear(),
-      yearMin: (new Date).getFullYear() - 100,
-      closeOnSelect: true
+      yearMin: (new Date).getFullYear() - 10,
+      closeOnSelect: true,
+      format: 'yyyy mmm' // 'yyyy-mm yy mmm mmmm'
     };
   }
 

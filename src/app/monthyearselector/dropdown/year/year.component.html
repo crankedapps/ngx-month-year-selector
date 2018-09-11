@@ -1,12 +1,12 @@
 <div class="year-wrapper">
   <div>
-    <a (click)="yearBack()" class="year-nav-link">
+    <a (click)="yearBack()" class="year-nav-link" *ngIf="options.yearMin && year > options.yearMin">
       <fa-icon [icon]="['fas', 'caret-square-left']" [fixedWidth]="true"></fa-icon>
     </a>
   </div>
   <div class="year-label">{{ year }}</div>
   <div>
-    <a (click)="yearForward()" class="year-nav-link">
+    <a (click)="yearForward()" class="year-nav-link" *ngIf="options.yearMax && year < options.yearMax">
       <fa-icon [icon]="['fas', 'caret-square-right']" [fixedWidth]="true"></fa-icon>
     </a>
   </div>

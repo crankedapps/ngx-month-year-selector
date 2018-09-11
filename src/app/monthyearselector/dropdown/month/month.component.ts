@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IMonthYearSelectorDate } from '../../../models/IMonthYearSelectorDate';
+import { IMonthYearSelectorOptions } from '../../../models/IMonthYearSelectorOptions';
+import { monthAbbrv } from '../../../lang.en';
 
 @Component({
   selector: 'app-month',
@@ -7,11 +9,12 @@ import { IMonthYearSelectorDate } from '../../../models/IMonthYearSelectorDate';
   styleUrls: ['./month.component.css']
 })
 export class MonthComponent implements OnInit {
-  abbrv: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  @Input() options: IMonthYearSelectorOptions;
   @Input() dateSelected: IMonthYearSelectorDate;
   @Input() year: number;
   @Input() month: number;
   @Output() monthChange = new EventEmitter();
+  abbrv: string[] = monthAbbrv;
 
   constructor() { }
 
