@@ -23,7 +23,6 @@ export class MonthComponent implements OnInit {
   }
 
   stateMonthActive(i: number): boolean {
-    console.log('stateMonthActive', this.dateSelected.year, this.year, this.month == i);
     return this.dateSelected.year == this.year && this.month == i;
   }
 

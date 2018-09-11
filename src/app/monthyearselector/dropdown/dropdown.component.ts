@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-dropdown',
@@ -7,10 +7,30 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class DropdownComponent implements OnInit {
   @Input() dateSelected: { year: number; month: number; };
+  @Input() display: boolean;
   @Output() selected = new EventEmitter();
+  @Output() displayChange = new EventEmitter();
   year: number;
   month: number;
+  
+  private wasInside = false;
+
   constructor() { }
+  @HostListener('click')
+  clickInside() {
+    console.log("clicked inside");
+    this.wasInside = true;
+  }
+  
+  @HostListener('document:click')
+  clickout() {
+    if (!this.wasInside) {
+      console.log("clicked outside");
+      this.display = false;
+      this.displayChange.emit(false);
+    }
+    this.wasInside = false;
+  }
 
   ngOnInit() {
     this.year = this.dateSelected.year;

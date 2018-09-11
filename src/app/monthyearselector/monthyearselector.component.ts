@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./monthyearselector.component.css']
 })
 export class MonthyearselectorComponent implements OnInit {
+  dropDownToggled: boolean = false;
   options: {
     yearStart: number;
     yearEnd: number;
@@ -30,6 +31,12 @@ export class MonthyearselectorComponent implements OnInit {
   onDateSelected(e: { year: number, month: number }): void {
     console.log('onDateSelected', e);
     this.dateSelected = e;
+  }
+
+  textInputClick($event: Event) {
+    this.dropDownToggled = !this.dropDownToggled;
+    $event.preventDefault();
+    $event.stopPropagation();
   }
 
 }

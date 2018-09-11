@@ -12,4 +12,8 @@ export class TextinputComponent implements OnInit {
   ngOnInit() {
   }
 
+  value() {
+    return this.dateSelected.year + '-' + ('0' + (this.dateSelected.month + 1)).slice(-2);
+  }
+
 }
