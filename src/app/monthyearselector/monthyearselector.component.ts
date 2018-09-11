@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { IMonthYearSelectorOptions } from '../models/IMonthYearSelectorOptions';
 import { IMonthYearSelectorDate } from '../models/IMonthYearSelectorDate';
 
@@ -9,21 +9,14 @@ import { IMonthYearSelectorDate } from '../models/IMonthYearSelectorDate';
 })
 export class MonthyearselectorComponent implements OnInit {
   @Output() change = new EventEmitter();
+  @Input() options: IMonthYearSelectorOptions;
   dropDownToggled: boolean = false;
-  options: IMonthYearSelectorOptions;
   dateSelected: {
     year: number;
     month: number;
   };
 
-  constructor() {
-    this.options = {
-      yearMax: (new Date).getFullYear(),
-      yearMin: (new Date).getFullYear() - 10,
-      closeOnSelect: true,
-      format: 'yyyy mmm' // 'yyyy-mm yy mmm mmmm'
-    };
-  }
+  constructor() { }
 
   ngOnInit() {
     // If no date selected, select today's date

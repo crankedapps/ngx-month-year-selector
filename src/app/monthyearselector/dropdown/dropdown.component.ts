@@ -28,7 +28,7 @@ export class DropdownComponent implements OnInit {
   @HostListener('document:click')
   clickout() {
     if (!this.wasInside) {
-      this.display = false;
+      this.close();
       this.displayChange.emit(false);
     }
     this.wasInside = false;
@@ -41,6 +41,12 @@ export class DropdownComponent implements OnInit {
 
   monthChange(e): void {
     this.selected.emit({ year: this.year, month: this.month });
+  }
+
+  close(): void {
+    this.display = false;
+    this.month = this.dateSelected.month;
+    this.year = this.dateSelected.year;
   }
 
 }
