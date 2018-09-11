@@ -19,6 +19,15 @@ export class MonthyearselectorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // Set default options
+    const defaultOptions: IMonthYearSelectorOptions = {
+      closeOnSelect: false,
+      disabled: false,
+      format: 'yyyy-mm',
+      yearMin: null,
+      yearMax: null
+    };
+    this.options = Object.assign(defaultOptions, this.options);
     // If no date selected, select today's date
     if (!this.dateSelected) {
       this.dateSelected = {
@@ -38,7 +47,9 @@ export class MonthyearselectorComponent implements OnInit {
   }
 
   textInputClick($event: Event) {
-    this.dropDownToggled = !this.dropDownToggled;
+    if (!this.options.disabled) {
+      this.dropDownToggled = !this.dropDownToggled;
+    }
     $event.preventDefault();
     $event.stopPropagation();
   }

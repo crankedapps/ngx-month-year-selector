@@ -9,9 +9,10 @@ import { IMonthYearSelectorOptions } from './models/IMonthYearSelectorOptions';
 export class AppComponent {
   title = 'date-year-selector';
   options: IMonthYearSelectorOptions = {
+    disabled: false,
     yearMax: (new Date).getFullYear() + 10,
     yearMin: (new Date).getFullYear() - 10,
-    closeOnSelect: true,
+    //closeOnSelect: true,
     format: 'yyyy mmm' // 'yyyy-mm yy mmm mmmm'
   };
 
