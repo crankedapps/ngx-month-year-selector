@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { IMonthYearSelectorDate } from '../../models/IMonthYearSelectorDate';
 
 @Component({
   selector: 'app-textinput',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./textinput.component.css']
 })
 export class TextinputComponent implements OnInit {
-  @Input() dateSelected: { year: number; month: number };
+  @Input() dateSelected: IMonthYearSelectorDate;
   constructor() { }
 
   ngOnInit() {

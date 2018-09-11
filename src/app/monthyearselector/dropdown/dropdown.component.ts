@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
+import { IMonthYearSelectorOptions } from '../../models/IMonthYearSelectorOptions';
+import { IMonthYearSelectorDate } from '../../models/IMonthYearSelectorDate';
 
 @Component({
   selector: 'app-dropdown',
@@ -6,7 +8,8 @@ import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@a
   styleUrls: ['./dropdown.component.css']
 })
 export class DropdownComponent implements OnInit {
-  @Input() dateSelected: { year: number; month: number; };
+  @Input() options: IMonthYearSelectorOptions;
+  @Input() dateSelected: IMonthYearSelectorDate;
   @Input() display: boolean;
   @Output() selected = new EventEmitter();
   @Output() displayChange = new EventEmitter();
@@ -16,16 +19,15 @@ export class DropdownComponent implements OnInit {
   private wasInside = false;
 
   constructor() { }
+  
   @HostListener('click')
   clickInside() {
-    console.log("clicked inside");
     this.wasInside = true;
   }
   
   @HostListener('document:click')
   clickout() {
     if (!this.wasInside) {
-      console.log("clicked outside");
       this.display = false;
       this.displayChange.emit(false);
     }

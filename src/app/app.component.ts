@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'date-year-selector';
+  onChange(e: { year: number, month: number }) {
+    console.log('onChange', e);
+  }
 }
