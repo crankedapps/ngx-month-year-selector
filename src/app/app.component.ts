@@ -14,7 +14,10 @@ export class AppComponent {
     yearMin: (new Date).getFullYear() - 10,
     // yearStart: 2010,
     // closeOnSelect: true,
-    format: 'yyyy mmm' // 'yyyy-mm yy mmm mmmm'
+    format: 'yyyy mmm', // 'yyyy-mm yy mmm mmmm',
+    disabledDates: [
+      { year: 2018, month: 11 } // individual date
+    ],
   };
 
   onChange(e: { year: number, month: number }) {

@@ -24,6 +24,7 @@ export class MonthComponent implements OnInit {
 
   // Month click event
   clickMonth(idx: number): void {
+    if (this.stateMonthDisabled(idx)) { return; }
     this.month = idx;
     this.monthChange.emit(this.month);
   }
@@ -33,4 +34,12 @@ export class MonthComponent implements OnInit {
     return this.dateSelected.year == this.year && this.month == i;
   }
 
+  // Month disabled state
+  stateMonthDisabled(i: number): boolean {
+    return this.options.disabledDates.filter((date) => {
+      console.log(date.year, this.year, date.month, i);
+      console.log(date.year == this.year, date.month == i);
+      return date.year == this.year && date.month == i;
+    }).length > 0;
+  }
 }

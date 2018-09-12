@@ -1,6 +1,6 @@
 <div class="months-wrapper">
   <div class="month-col" *ngFor="let month of abbrv; let i = index">
-    <div class="month-col__inner" [class.month-col__inner--selected]="stateMonthActive(i)" (click)="clickMonth(i);">
+    <div class="month-col__inner" [class.month-col__inner--selected]="stateMonthActive(i)" [class.month-col__inner--disabled]="stateMonthDisabled(i)" (click)="clickMonth(i);">
       {{ month }}
     </div>
   </div>
