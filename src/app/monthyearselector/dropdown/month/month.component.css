@@ -21,10 +21,10 @@
 }
 .month-col__inner--selected, .month-col__inner--selected:hover {
     border: 1px solid #868484;
-    background-color: #e2e2e2;
+    background-color: #d2d1d1;
 }
 .month-col__inner--disabled, .month-col__inner--disabled:hover {
-    border: 1px solid #ff0000;
+    border: 1px solid #ff7272;
     cursor: auto;
-    background-color: #ffdfdf;
+    background-color: #ffe2e2;
 }

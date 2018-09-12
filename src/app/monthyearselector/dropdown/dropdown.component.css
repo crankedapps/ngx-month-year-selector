@@ -4,6 +4,7 @@
     border-radius: 5px;
     border-top-left-radius: 0;
     background-color: #fff;
+    box-shadow: 2px 2px #e2d2d2;
     padding: 0.5em;
     width: 200px;
     -webkit-user-select: none; /* Chrome/Safari */        
