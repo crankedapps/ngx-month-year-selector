@@ -22,7 +22,8 @@ export class DropdownComponent implements OnInit {
 
   // Init
   ngOnInit() {
-    this.year = this.dateSelected.year;
+    console.log('options', this.options);
+    this.year = this.options.yearStart ? this.options.yearStart : this.dateSelected.year;
     this.month = this.dateSelected.month;
   }
   
@@ -63,7 +64,7 @@ export class DropdownComponent implements OnInit {
   // Clear month/year view state
   clearState(): void {
     this.month = this.dateSelected.month;
-    this.year = this.dateSelected.year;
+    this.year = this.options.yearStart ? this.options.yearStart : this.dateSelected.year;
   }
 
 }

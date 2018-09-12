@@ -20,15 +20,8 @@ export class MonthyearselectorComponent implements OnInit {
 
   // Init
   ngOnInit() {
-    // Set default options
-    const defaultOptions: IMonthYearSelectorOptions = {
-      closeOnSelect: false,
-      disabled: false,
-      format: 'yyyy-mm',
-      yearMin: null,
-      yearMax: null
-    };
-    this.options = Object.assign(defaultOptions, this.options);
+    // Setup options
+    this.optionsSetup();
     // If no date selected, select today's date
     if (!this.dateSelected) {
       this.dateSelected = {
@@ -36,6 +29,34 @@ export class MonthyearselectorComponent implements OnInit {
         month: (new Date).getMonth()
       };
     }
+  }
+
+  // Setup options
+  optionsSetup(): void {
+    // Setup defaults
+    const defaultOptions: IMonthYearSelectorOptions = {
+      closeOnSelect: false,
+      disabled: false,
+      format: 'yyyy-mm',
+      yearMin: null,
+      yearMax: null,
+      yearStart: null
+    };
+    // Set options
+    this.options = Object.assign(defaultOptions, this.options);
+    // Validate @Input options
+    if (!this.optionsValidate(this.options)) { return; }
+  }
+
+  // Validate options
+  optionsValidate(options: IMonthYearSelectorOptions): boolean {
+    if (options.yearStart && options.yearStart < options.yearMin) {
+      throw new Error('ng-month-year-selector error: yearStart must be >= yearMin');
+    }
+    if (options.yearStart && options.yearStart > options.yearMax) {
+      throw new Error('ng-month-year-selector error: yearStart must be <= yearMax');
+    }
+    return true;
   }
 
   // selected event for dropdown component

@@ -12,7 +12,8 @@ export class AppComponent {
     disabled: false,
     yearMax: (new Date).getFullYear() + 10,
     yearMin: (new Date).getFullYear() - 10,
-    //closeOnSelect: true,
+    // yearStart: 2010,
+    // closeOnSelect: true,
     format: 'yyyy mmm' // 'yyyy-mm yy mmm mmmm'
   };
 

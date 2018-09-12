@@ -1,7 +1,8 @@
 export interface IMonthYearSelectorOptions {
-    closeOnSelect?: boolean;
-    disabled?: boolean;
-    format?: string;
-    yearMax?: number;
-    yearMin?: number;
+    closeOnSelect?: boolean; // Closes dropdown on month selection
+    disabled?: boolean; // Input textbox & dropdown disabled
+    format?: string; // Format for year (yyyy, yy, mmmm, mmm, mm)
+    yearMax?: number; // Minimum year range
+    yearMin?: number; // Maximum year range
+    yearStart?: number; // Dialog opens to this no matter what date selected
 }
