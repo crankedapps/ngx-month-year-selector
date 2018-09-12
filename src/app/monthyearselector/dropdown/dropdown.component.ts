@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener, OnChanges, SimpleChange } from '@angular/core';
 import { IMonthYearSelectorOptions } from '../../models/IMonthYearSelectorOptions';
 import { IMonthYearSelectorDate } from '../../models/IMonthYearSelectorDate';
 
@@ -19,12 +19,18 @@ export class DropdownComponent implements OnInit {
   private wasInside = false;
 
   constructor() { }
+
+  // Init
+  ngOnInit() {
+    this.year = this.dateSelected.year;
+    this.month = this.dateSelected.month;
+  }
   
+  // Detect when click outside of dropdown component
   @HostListener('click')
   clickInside() {
     this.wasInside = true;
   }
-  
   @HostListener('document:click')
   clickout() {
     if (!this.wasInside) {
@@ -34,17 +40,28 @@ export class DropdownComponent implements OnInit {
     this.wasInside = false;
   }
 
-  ngOnInit() {
-    this.year = this.dateSelected.year;
-    this.month = this.dateSelected.month;
+  // Listen for changes to @Input values
+  ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+    for (const propName of Object.keys(changes)) {
+      // Clear state when dropdown is toggled
+      if (propName === 'display') {
+        this.clearState();
+      }
+    }
   }
 
+  // monthChange event listneer for month component
   monthChange(e): void {
     this.selected.emit({ year: this.year, month: this.month });
   }
 
+  // Close dropdown
   close(): void {
     this.display = false;
+  }
+
+  // Clear month/year view state
+  clearState(): void {
     this.month = this.dateSelected.month;
     this.year = this.dateSelected.year;
   }

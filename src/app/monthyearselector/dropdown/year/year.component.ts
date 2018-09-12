@@ -13,13 +13,16 @@ export class YearComponent implements OnInit {
 
   constructor() {}
 
+  // Init
   ngOnInit() {}
 
+  // Year back click event
   yearBack(): void {
     this.year--;
     this.yearChange.emit(this.year);
   }
 
+  // Year forward click event
   yearForward(): void {
     this.year++;
     this.yearChange.emit(this.year);

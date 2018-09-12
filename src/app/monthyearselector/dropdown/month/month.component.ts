@@ -18,14 +18,17 @@ export class MonthComponent implements OnInit {
 
   constructor() { }
 
+  // Init
   ngOnInit() {
   }
 
+  // Month click event
   clickMonth(idx: number): void {
     this.month = idx;
     this.monthChange.emit(this.month);
   }
 
+  // Month active state
   stateMonthActive(i: number): boolean {
     return this.dateSelected.year == this.year && this.month == i;
   }

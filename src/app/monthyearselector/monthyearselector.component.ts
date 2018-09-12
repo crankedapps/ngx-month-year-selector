@@ -10,7 +10,7 @@ import { IMonthYearSelectorDate } from '../models/IMonthYearSelectorDate';
 export class MonthyearselectorComponent implements OnInit {
   @Output() change = new EventEmitter();
   @Input() options: IMonthYearSelectorOptions;
-  dropDownToggled: boolean = false;
+  dropdownToggled: boolean = false;
   dateSelected: {
     year: number;
     month: number;
@@ -18,6 +18,7 @@ export class MonthyearselectorComponent implements OnInit {
 
   constructor() { }
 
+  // Init
   ngOnInit() {
     // Set default options
     const defaultOptions: IMonthYearSelectorOptions = {
@@ -37,18 +38,20 @@ export class MonthyearselectorComponent implements OnInit {
     }
   }
 
+  // selected event for dropdown component
   onDateSelected(e: IMonthYearSelectorDate): void {
     console.log('onDateSelected', e);
     this.dateSelected = e;
     this.change.emit(this.dateSelected);
     if (this.options.closeOnSelect) {
-      this.dropDownToggled = false;
+      this.dropdownToggled = false;
     }
   }
 
+  // text input click event
   textInputClick($event: Event) {
     if (!this.options.disabled) {
-      this.dropDownToggled = !this.dropDownToggled;
+      this.dropdownToggled = !this.dropdownToggled;
     }
     $event.preventDefault();
     $event.stopPropagation();

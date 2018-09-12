@@ -3,6 +3,7 @@
     border: 1px solid #000;
     border-radius: 5px;
     border-top-left-radius: 0;
+    background-color: #fff;
     padding: 0.5em;
     width: 200px;
     -webkit-user-select: none; /* Chrome/Safari */        
