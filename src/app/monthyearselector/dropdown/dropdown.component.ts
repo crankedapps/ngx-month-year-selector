@@ -23,8 +23,6 @@ export class DropdownComponent implements OnInit {
   // Init
   ngOnInit() {
     console.log('options', this.options);
-    // this.year = this.options.yearStart ? this.options.yearStart : this.dateSelected.year;
-    // this.month = this.dateSelected.month;
   }
   
   // Detect when click outside of dropdown component
@@ -43,7 +41,6 @@ export class DropdownComponent implements OnInit {
 
   // Listen for changes to @Input values
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
-    console.log('ngOnChanges', changes);
     for (const propName of Object.keys(changes)) {
       // Clear state when dropdown is toggled
       if (propName === 'display' && !changes.display.firstChange) {
@@ -52,12 +49,13 @@ export class DropdownComponent implements OnInit {
     }
   }
 
-  // this.clearState();
+  // Display enabled listener
   onDisplayEnabled() {
     console.log('onDisplayEnabled', this.month, this.year);
     if (this.month === undefined || this.year === undefined) { this.clearState(); }
   }
 
+  // Display disabled listener
   onDisplayDisabled() {
     console.log('onDisplayDisabled');
     if (this.options.resetYearOnBlur) {

@@ -16,7 +16,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
 export class MonthyearselectorComponent implements OnInit, ControlValueAccessor {
-  // @Output() change = new EventEmitter();
+  @Output() change = new EventEmitter();
   @Input() options: IMonthYearSelectorOptions;
   dropdownToggled: boolean = false;
   dateSelected: IMonthYearSelectorDate;
