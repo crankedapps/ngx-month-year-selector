@@ -36,10 +36,13 @@ export class MonthComponent implements OnInit {
 
   // Month disabled state
   stateMonthDisabled(i: number): boolean {
-    return this.options.disabledDates.filter((date) => {
-      console.log(date.year, this.year, date.month, i);
-      console.log(date.year == this.year, date.month == i);
-      return date.year == this.year && date.month == i;
+    const disabledRanges = this.options.disableDateRanges && this.options.disableDateRanges.filter((range) => {
+      const startDate = new Date(range[0].year, range[0].month, 1);
+      const endDate = new Date(range[1].year, range[1].month, 1);
+      const viewDate = new Date(this.year, i, 1);
+      return viewDate >= startDate && viewDate <= endDate;
     }).length > 0;
+    const disabledIndividual = this.options.disabledDates && this.options.disabledDates.filter(date => date.year == this.year && date.month == i).length > 0;
+    return (disabledRanges || disabledIndividual);
   }
 }

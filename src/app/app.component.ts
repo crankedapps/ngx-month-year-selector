@@ -16,8 +16,11 @@ export class AppComponent {
     // closeOnSelect: true,
     format: 'yyyy mmm', // 'yyyy-mm yy mmm mmmm',
     disabledDates: [
-      { year: 2018, month: 11 } // individual date
+      { year: 2016, month: 10 } // individual date
     ],
+    disableDateRanges: [
+      [{ year: 2017, month: 5 }, { year: 2019, month: 6 }]
+    ]
   };
 
   onChange(e: { year: number, month: number }) {
