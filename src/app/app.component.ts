@@ -7,6 +7,10 @@ import { IMonthYearSelectorOptions } from './models/IMonthYearSelectorOptions';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  dataModel: any = {
+    month: 0,
+    year: 2018
+  };
   title = 'date-year-selector';
   options: IMonthYearSelectorOptions = {
     disabled: false,
@@ -15,12 +19,14 @@ export class AppComponent {
     // yearStart: 2010,
     // closeOnSelect: true,
     format: 'yyyy mmm', // 'yyyy-mm yy mmm mmmm',
+    /*
     disabledDates: [
       { year: 2016, month: 10 } // individual date
     ],
     disableDateRanges: [
       [{ year: 2017, month: 5 }, { year: 2019, month: 6 }]
     ]
+    */
   };
 
   onChange(e: { year: number, month: number }) {

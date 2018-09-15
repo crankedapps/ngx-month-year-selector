@@ -25,6 +25,6 @@
 }
 .month-col__inner--disabled, .month-col__inner--disabled:hover {
     border: 1px solid #ff7272;
-    cursor: auto;
     background-color: #ffe2e2;
+    cursor: not-allowed;
 }

@@ -5,7 +5,10 @@
 </div>
 <div style="margin-bottom: 1rem;">
         <div style="display: inline-block; font-weight: bold; margin-right: 0.5rem;">Date:</div>
-        <app-monthyearselector [options]="options" (change)="onChange($event)"></app-monthyearselector>    
+        <app-monthyearselector [(ngModel)]="dataModel" [options]="options" (change)="onChange($event)"></app-monthyearselector>    
+</div>
+<div>
+        {{ dataModel | json }}
 </div>
 <div>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 

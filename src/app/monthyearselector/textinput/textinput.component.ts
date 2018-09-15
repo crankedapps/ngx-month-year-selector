@@ -16,7 +16,8 @@ export class TextinputComponent implements OnInit {
   ngOnInit() {
   }
 
-  value() {
+  value(): string {
+    if (!this.dateSelected) { return ''; };
     let returnStr = this.options.format;
     returnStr = returnStr.replace('yyyy', <any>this.dateSelected.year);
     returnStr = returnStr.replace('yy', <any>this.dateSelected.year.toString().slice(-2));

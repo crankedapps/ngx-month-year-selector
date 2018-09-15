@@ -10,3 +10,35 @@
 .year-nav-link {
     cursor: pointer;
 }
+.arrow {
+    display: inline-block !important;
+    position: relative;
+    width: 1em;
+    height: 1em;
+    border-radius: 100%;
+    border: 0.1em solid #666666;
+}
+.arrow:before {
+    position: absolute;
+    content: '';
+    margin: auto;
+    width: 0.33em;
+    height: 0.33em;
+    border: 0.1em solid #666666;
+    border-right: none;
+    border-top: none;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    box-sizing: content-box
+}
+.arrow.arrow--right:before {
+    transform: rotate(-135deg);
+    right: 0.1em;
+    left: 0;
+}
+.arrow.arrow--left:before {
+    transform: rotate(45deg);
+    left: 0.1em;
+    right: 0;
+}
