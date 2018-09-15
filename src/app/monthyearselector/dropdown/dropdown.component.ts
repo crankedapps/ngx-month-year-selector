@@ -47,8 +47,21 @@ export class DropdownComponent implements OnInit {
     for (const propName of Object.keys(changes)) {
       // Clear state when dropdown is toggled
       if (propName === 'display' && !changes.display.firstChange) {
-        this.clearState();
+        if (!changes.display.currentValue) { this.onDisplayDisabled(); } else { this.onDisplayEnabled(); }
       }
+    }
+  }
+
+  // this.clearState();
+  onDisplayEnabled() {
+    console.log('onDisplayEnabled', this.month, this.year);
+    if (this.month === undefined || this.year === undefined) { this.clearState(); }
+  }
+
+  onDisplayDisabled() {
+    console.log('onDisplayDisabled');
+    if (this.options.resetYearOnBlur) {
+      this.clearState();
     }
   }
 
@@ -64,6 +77,7 @@ export class DropdownComponent implements OnInit {
 
   // Clear month/year view state
   clearState(): void {
+    console.log('clearState');
     this.month = this.dateSelected.month;
     this.year = this.options.yearStart ? this.options.yearStart : this.dateSelected.year;
   }
