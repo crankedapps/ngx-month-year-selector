@@ -100,7 +100,6 @@ export class DropdownComponent implements OnInit {
     if (this.options.forceOpenDirection) { this.openDirection = this.options.forceOpenDirection; return; }
     // Calculate dropdown orientation to display dropdown based position in viewport
     const dropdownDimensions = this.dropdownWrapper.nativeElement.getBoundingClientRect();
-    console.log(dropdownDimensions.right, document.documentElement.clientWidth, parseInt(dropdownDimensions.right,10) - parseInt(<any>document.documentElement.clientWidth, 10));
     const overflowRight = dropdownDimensions.right - document.documentElement.clientWidth;
     let distToRight, distToLeft;
     if (this.openDirection === 'left') {
@@ -115,10 +114,12 @@ export class DropdownComponent implements OnInit {
     }
     // If dropdown right overflow viewport, and distance available on left, switch to left orientation
     if (overflowRight > 0 && distToLeft > dropdownDimensions.width) {
+      this.openDirection = 'left';
       return;
     }
     // If dropdown orientated to left/middle amd space available again to right, orientate back to right (default)
     if (this.openDirection !== 'right' && overflowRight < 0 && distToRight > dropdownDimensions.width) {
+      this.openDirection = 'right';
       return;
     }
     // If no space on either side, orientate middle
@@ -126,6 +127,7 @@ export class DropdownComponent implements OnInit {
       this.openDirection = 'middle';
       return;
     }
+    console.log('detectEnd');
   }
 
 }
