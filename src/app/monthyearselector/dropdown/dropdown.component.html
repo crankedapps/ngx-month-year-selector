@@ -1,4 +1,4 @@
-<div class="dropdown-wrapper" *ngIf="display">
+<div class="dropdown-wrapper" [class.dropdown-wrapper--open-left]="options.openLeft" *ngIf="display">
   <app-year [options]="options" [(year)]="year"></app-year>
   <app-month [options]="options" [dateSelected]="dateSelected" [(month)]="month" [year]="year" (monthChange)="monthChange($event)"></app-month>
 </div>

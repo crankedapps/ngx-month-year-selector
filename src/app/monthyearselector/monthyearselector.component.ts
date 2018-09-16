@@ -44,6 +44,7 @@ export class MonthyearselectorComponent implements OnInit, ControlValueAccessor 
       closeOnSelect: false,
       disabled: false,
       format: 'yyyy-mm',
+      openLeft: false,
       resetYearOnBlur: true,
       yearMin: null,
       yearMax: null,

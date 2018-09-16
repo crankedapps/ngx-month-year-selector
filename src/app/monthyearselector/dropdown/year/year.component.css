@@ -2,10 +2,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.5em;
+    margin: 0 0.75rem 0.5rem 0.75rem;
 }
 .year-label {
     font-size: 1.2rem;
+}
+.year-nav {
+    height: 1em;
 }
 .year-nav-link {
     cursor: pointer;
