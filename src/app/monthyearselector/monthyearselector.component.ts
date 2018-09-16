@@ -43,8 +43,10 @@ export class MonthyearselectorComponent implements OnInit, ControlValueAccessor 
     const defaultOptions: IMonthYearSelectorOptions = {
       closeOnSelect: false,
       disabled: false,
+      disabledDates: [],
+      disableDateRanges: [],
+      forceOpenDirection: null,
       format: 'yyyy-mm',
-      openLeft: false,
       resetYearOnBlur: true,
       yearMin: null,
       yearMax: null,

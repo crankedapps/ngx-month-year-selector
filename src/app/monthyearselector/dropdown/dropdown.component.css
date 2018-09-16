@@ -6,7 +6,7 @@
     background-color: #fff;
     box-shadow: 3px 3px #e2d2d2;
     padding: 0.5rem;
-    width: 15.5rem;
+    width: 12rem;
     margin-top: 9px;
     font-size: 1rem;
     -webkit-user-select: none; /* Chrome/Safari */        
@@ -33,24 +33,31 @@
 }
 .dropdown-wrapper:after {
     border-color: rgba(250,250,250,0);
-    border-bottom-color: #FAFAFA;
+    border-bottom-color: #fff;
     border-width: 9px;
     margin-left: -9px;
 }
 .dropdown-wrapper--open-left {
-    margin-left: -14.5rem;
+    margin-left: -10.5rem;
+}
+.dropdown-wrapper--open-middle {
+    margin-left: -5.25rem;
 }
 .dropdown-wrapper--open-left:before, .dropdown-wrapper--open-left:after {
     right: 1.25rem !important;
     left: auto !important;
 }
-.dropdown-wrapper--open-left:before {
+.dropdown-wrapper--open-left:before, .dropdown-wrapper--open-middle:before {
     border-width: 10px;
     margin-right: -10px;
     margin-left: auto;
 }
-.dropdown-wrapper--open-left:after {
+.dropdown-wrapper--open-left:after, .dropdown-wrapper--open-middle:after {
     border-width: 9px;
     margin-right: -9px;
     margin-left: auto;
+}
+.dropdown-wrapper--open-middle:before, .dropdown-wrapper--open-middle:after {
+    right: 6.25rem !important;
+    left: auto !important;
 }

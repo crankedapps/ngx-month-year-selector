@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, HostListener, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener, OnChanges, SimpleChange, ViewChild, ElementRef } from '@angular/core';
 import { IMonthYearSelectorOptions } from '../../models/IMonthYearSelectorOptions';
 import { IMonthYearSelectorDate } from '../../models/IMonthYearSelectorDate';
 
@@ -15,6 +15,9 @@ export class DropdownComponent implements OnInit {
   @Output() displayChange = new EventEmitter();
   year: number;
   month: number;
+  openDirection: 'left' | 'right' | 'middle' = 'right';
+  @ViewChild('dropdownWrapper')
+  dropdownWrapper: ElementRef;
   
   private wasInside = false;
 
@@ -23,6 +26,9 @@ export class DropdownComponent implements OnInit {
   // Init
   ngOnInit() {
     console.log('options', this.options);
+    if (this.options.forceOpenDirection && ['left', 'right', 'middle'].indexOf(this.options.forceOpenDirection) !== -1) {
+      this.openDirection = this.options.forceOpenDirection;
+    }
   }
   
   // Detect when click outside of dropdown component
@@ -53,6 +59,9 @@ export class DropdownComponent implements OnInit {
   onDisplayEnabled() {
     console.log('onDisplayEnabled', this.month, this.year);
     if (this.month === undefined || this.year === undefined) { this.clearState(); }
+    setTimeout(() => {
+      this.detectOrientation();
+    }, 0);
   }
 
   // Display disabled listener
@@ -78,6 +87,45 @@ export class DropdownComponent implements OnInit {
     console.log('clearState');
     this.month = this.dateSelected.month;
     this.year = this.options.yearStart ? this.options.yearStart : this.dateSelected.year;
+  }
+
+  // On window resize
+  onResize(event) {
+    this.detectOrientation();
+  }
+
+  // Automatically detect dropdown orientation (open right, middle, left) based on visibility in viewport
+  detectOrientation() {
+    // If forced orientation set in options, use those
+    if (this.options.forceOpenDirection) { this.openDirection = this.options.forceOpenDirection; return; }
+    // Calculate dropdown orientation to display dropdown based position in viewport
+    const dropdownDimensions = this.dropdownWrapper.nativeElement.getBoundingClientRect();
+    console.log(dropdownDimensions.right, document.documentElement.clientWidth, parseInt(dropdownDimensions.right,10) - parseInt(<any>document.documentElement.clientWidth, 10));
+    const overflowRight = dropdownDimensions.right - document.documentElement.clientWidth;
+    let distToRight, distToLeft;
+    if (this.openDirection === 'left') {
+      distToRight = document.documentElement.clientWidth - dropdownDimensions.right;
+      distToLeft = dropdownDimensions.right;
+    } else if (this.openDirection === 'right') {
+      distToRight = document.documentElement.clientWidth - dropdownDimensions.left;
+      distToLeft = dropdownDimensions.left;
+    } else {
+      distToRight = document.documentElement.clientWidth - (dropdownDimensions.right - (dropdownDimensions.width / 2));
+      distToLeft = dropdownDimensions.left + (dropdownDimensions.width / 2);
+    }
+    // If dropdown right overflow viewport, and distance available on left, switch to left orientation
+    if (overflowRight > 0 && distToLeft > dropdownDimensions.width) {
+      return;
+    }
+    // If dropdown orientated to left/middle amd space available again to right, orientate back to right (default)
+    if (this.openDirection !== 'right' && overflowRight < 0 && distToRight > dropdownDimensions.width) {
+      return;
+    }
+    // If no space on either side, orientate middle
+    if (this.openDirection != 'middle' && (dropdownDimensions.left < 0 || overflowRight > 0) && dropdownDimensions.width <= document.documentElement.clientWidth) {
+      this.openDirection = 'middle';
+      return;
+    }
   }
 
 }

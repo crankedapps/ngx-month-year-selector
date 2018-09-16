@@ -19,6 +19,8 @@ export class AppComponent {
     closeOnSelect: true,
     // yearStart: 2010,
     format: 'yyyy mmm', // 'yyyy-mm yy mmm mmmm',
+    // forceOpenLeft: true,
+    // forceOpenRight: true,
     disabledDates: [
       { year: 2018, month: 10 } // individual date
     ],
