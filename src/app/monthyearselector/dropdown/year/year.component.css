@@ -2,10 +2,33 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 0.75rem 0.5rem 0.75rem;
+    margin: 0 0.75em 0.5em 0.75em;
+    font-size: 1em;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 }
 .year-label {
-    font-size: 1.2rem;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+.year-edit input[type="number"],
+.year-edit input[type="number"]:focus {
+    display: inline-block;
+    font-size: 1.2em;
+    width: 4.5em;
+    text-align: center;
+    padding: 0.1em;
+    border: 1px solid #666;
+    border-radius: 3px;
+    outline: none;
+}
+.year-edit input[type=number]::-webkit-inner-spin-button, 
+.year-edit input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.year-edit--invalid, .year-edit--invalid:focus {
+    border: 1px solid #ff0000 !important;
+    outline: none;
 }
 .year-nav {
     height: 1em;

@@ -4,7 +4,11 @@
       <span class="arrow arrow--left"></span>
     </a>
   </div>
-  <div class="year-label">{{ year }}</div>
+  <div class="year-label" *ngIf="!yearEditState" (click)="yearClick()">{{ year }}</div>
+  <div class="year-edit" *ngIf="yearEditState">
+    <input type="number" [min]="options.yearMin" [max]="options.yearMax" [(ngModel)]="yearEdit" (blur)="yearBlur()" (keypress)="yearKeyPress($event)"
+     [class.year-edit--invalid]="!yearEditValid()" #yearEditInput>
+  </div>
   <div class="year-nav">
     <a (click)="yearForward()" class="year-nav-link" *ngIf="!options.yearMax || year < options.yearMax">
       <span class="arrow arrow--right"></span>

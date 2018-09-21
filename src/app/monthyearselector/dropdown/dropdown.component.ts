@@ -90,12 +90,12 @@ export class DropdownComponent implements OnInit {
   }
 
   // On window resize
-  onResize(event) {
+  onResize(event): void {
     this.detectOrientation();
   }
 
   // Automatically detect dropdown orientation (open right, middle, left) based on visibility in viewport
-  detectOrientation() {
+  detectOrientation(): void {
     // If forced orientation set in options, use those
     if (this.options.forceOpenDirection) { this.openDirection = this.options.forceOpenDirection; return; }
     // Calculate dropdown orientation to display dropdown based position in viewport

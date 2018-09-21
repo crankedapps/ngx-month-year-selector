@@ -83,10 +83,15 @@ export class MonthyearselectorComponent implements OnInit, ControlValueAccessor 
   // text input click event
   textInputClick($event: Event) {
     if (!this.options.disabled) {
-      this.dropdownToggled = !this.dropdownToggled;
+      this.toggle();
     }
     $event.preventDefault();
     $event.stopPropagation();
+  }
+
+  // Toggle selector
+  toggle(): void {
+    this.dropdownToggled = !this.dropdownToggled;
   }
 
   // Setup [ngModel] binding via ControlValueAccessor
