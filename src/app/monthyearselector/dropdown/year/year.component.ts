@@ -55,7 +55,7 @@ export class YearComponent implements OnInit, OnDestroy {
   }
 
   // Year edit input blur event
-  yearBlur() { 
+  yearBlur() {
     console.log('yearBlur', this.yearEditValid());
     this.year = this.yearEditValid() ? this.yearEdit : this.year;
     this.yearEditState = false;

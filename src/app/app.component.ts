@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IMonthYearSelectorOptions } from './models/IMonthYearSelectorOptions';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +8,7 @@ import { IMonthYearSelectorOptions } from './models/IMonthYearSelectorOptions';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  dataModel: any = {
-    month: 0,
-    year: 2018
-  };
+  dataModel = null;
   title = 'date-year-selector';
   options: IMonthYearSelectorOptions = {
     disabled: false,
@@ -31,7 +29,18 @@ export class AppComponent {
     */
   };
 
+  constructor(private formBuilder: FormBuilder) {}
+
+  sampleForm = this.formBuilder.group({
+    name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+    monthyear: [null, Validators.compose([Validators.required])]
+  });
+
   onChange(e: { year: number, month: number }) {
     console.log('onChange', e);
+  }
+
+  onSubmit() {
+    console.log('onSubmit', this.sampleForm.value);
   }
 }
