@@ -4,11 +4,23 @@
         dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </div>
 <div style="margin-bottom: 1rem;">
-        <div style="display: inline-block; font-weight: bold; margin-right: 0.5rem;">Date date date:</div>
+        <div style="display: inline-block; font-weight: bold; margin-right: 0.5rem;">ngModel binding:</div>
         <app-monthyearselector [(ngModel)]="dataModel" [options]="options" (change)="onChange($event)"></app-monthyearselector> {{ dataModel | json }}
 </div>
-<div>
+<div style="margin-bottom: 1rem;">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
         dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+<div>
+        <div style="margin-bottom: 1rem;"><b>Reactive Form</b></div>
+        <form [formGroup]="sampleForm" (ngSubmit)="onSubmit()">
+                <div><input placeholder="Name" formControlName="name" name="name"></div>
+                <div style="color: red;" *ngIf="!sampleForm.controls['name'].valid && sampleForm.controls['name'].errors.minlength" i18n>
+                        Minimum length of 2 characters
+                </div>
+                <div><app-monthyearselector [options]="options" (change)="onChange($event)" formControlName="monthyear"></app-monthyearselector></div>
+                <div><button type="submit" [disabled]="!sampleForm.valid">Submit</button></div>
+                <div>Form Valid: {{ sampleForm.valid }}</div>
+        </form>
 </div>

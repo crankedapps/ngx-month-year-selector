@@ -27,14 +27,6 @@ export class MonthyearselectorComponent implements OnInit, ControlValueAccessor 
   ngOnInit() {
     // Setup options
     this.optionsSetup();
-    // If no date selected, select today's date
-    if (!this.dateSelected) {
-      this.dateSelected = {
-        year: (new Date).getFullYear(),
-        month: (new Date).getMonth()
-      };
-    }
-    console.log('ngOnInit', this.dateSelected);
   }
 
   // Setup options
@@ -99,7 +91,7 @@ export class MonthyearselectorComponent implements OnInit, ControlValueAccessor 
   private onChangeCallback: (_: any) => void = () => {};
   get value(): IMonthYearSelectorDate {
     return this.dateSelected;
-  };
+  }
   set value(v: IMonthYearSelectorDate) {
     if (v !== this.dateSelected) {
       this.dateSelected = v;
@@ -108,7 +100,7 @@ export class MonthyearselectorComponent implements OnInit, ControlValueAccessor 
   }
   // ControlValueAccessor interface methods
   writeValue(value: any) {
-    if (value !== this.dateSelected) {
+    if (value && value !== this.dateSelected) {
       this.dateSelected = value;
     }
   }

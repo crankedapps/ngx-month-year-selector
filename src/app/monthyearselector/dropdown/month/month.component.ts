@@ -19,8 +19,7 @@ export class MonthComponent implements OnInit {
   constructor() { }
 
   // Init
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   // Month click event
   clickMonth(idx: number): void {
@@ -31,7 +30,7 @@ export class MonthComponent implements OnInit {
 
   // Month active state
   stateMonthActive(i: number): boolean {
-    return this.dateSelected.year == this.year && this.month == i;
+    return this.dateSelected && this.dateSelected.year === this.year && this.month === i;
   }
 
   // Month disabled state
@@ -42,7 +41,7 @@ export class MonthComponent implements OnInit {
       const viewDate = new Date(this.year, i, 1);
       return viewDate >= startDate && viewDate <= endDate;
     }).length > 0;
-    const disabledIndividual = this.options.disabledDates && this.options.disabledDates.filter(date => date.year == this.year && date.month == i).length > 0;
+    const disabledIndividual = this.options.disabledDates && this.options.disabledDates.filter(date => date.year === this.year && date.month === i).length > 0;
     return (disabledRanges || disabledIndividual);
   }
 }

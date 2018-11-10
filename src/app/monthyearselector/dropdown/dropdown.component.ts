@@ -7,7 +7,7 @@ import { IMonthYearSelectorDate } from '../../models/IMonthYearSelectorDate';
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.css']
 })
-export class DropdownComponent implements OnInit {
+export class DropdownComponent implements OnInit, OnChanges {
   @Input() options: IMonthYearSelectorOptions;
   @Input() dateSelected: IMonthYearSelectorDate;
   @Input() display: boolean;
@@ -18,7 +18,7 @@ export class DropdownComponent implements OnInit {
   openDirection: 'left' | 'right' | 'middle' = 'right';
   @ViewChild('dropdownWrapper')
   dropdownWrapper: ElementRef;
-  
+
   private wasInside = false;
 
   constructor() { }
@@ -29,8 +29,12 @@ export class DropdownComponent implements OnInit {
     if (this.options.forceOpenDirection && ['left', 'right', 'middle'].indexOf(this.options.forceOpenDirection) !== -1) {
       this.openDirection = this.options.forceOpenDirection;
     }
+    if (!this.dateSelected) {
+      this.month = (new Date).getMonth();
+      this.year = (new Date).getFullYear();
+    }
   }
-  
+
   // Detect when click outside of dropdown component
   @HostListener('click')
   clickInside() {
@@ -57,7 +61,7 @@ export class DropdownComponent implements OnInit {
 
   // Display enabled listener
   onDisplayEnabled() {
-    console.log('onDisplayEnabled', this.month, this.year);
+    console.log('onDisplayEnabled', this.month, this.year, this.dateSelected);
     if (this.month === undefined || this.year === undefined) { this.clearState(); }
     setTimeout(() => {
       this.detectOrientation();
@@ -84,9 +88,10 @@ export class DropdownComponent implements OnInit {
 
   // Clear month/year view state
   clearState(): void {
-    console.log('clearState');
-    this.month = this.dateSelected.month;
-    this.year = this.options.yearStart ? this.options.yearStart : this.dateSelected.year;
+    this.month = this.dateSelected ? this.dateSelected.month : (new Date).getMonth();
+    this.year = this.options.yearStart ? this.options.yearStart :
+      this.dateSelected ? this.dateSelected.year : (new Date).getFullYear();
+    console.log('clearState', this.month, this.year);
   }
 
   // On window resize
@@ -123,7 +128,7 @@ export class DropdownComponent implements OnInit {
       return;
     }
     // If no space on either side, orientate middle
-    if (this.openDirection != 'middle' && (dropdownDimensions.left < 0 || overflowRight > 0) && dropdownDimensions.width <= document.documentElement.clientWidth) {
+    if (this.openDirection !== 'middle' && (dropdownDimensions.left < 0 || overflowRight > 0) && dropdownDimensions.width <= document.documentElement.clientWidth) {
       this.openDirection = 'middle';
       return;
     }
