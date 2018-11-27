@@ -11,6 +11,7 @@ import { monthNames, monthAbbrv } from '../../lang.en';
 export class TextinputComponent implements OnInit {
   @Input() options: IMonthYearSelectorOptions;
   @Input() dateSelected: IMonthYearSelectorDate;
+  @Input() placeholder: string;
   constructor() { }
 
   ngOnInit() {

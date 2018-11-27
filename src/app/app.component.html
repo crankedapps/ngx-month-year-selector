@@ -14,13 +14,25 @@
 </div>
 <div>
         <div style="margin-bottom: 1rem;"><b>Reactive Form</b></div>
-        <form [formGroup]="sampleForm" (ngSubmit)="onSubmit()">
-                <div><input placeholder="Name" formControlName="name" name="name"></div>
-                <div style="color: red;" *ngIf="!sampleForm.controls['name'].valid && sampleForm.controls['name'].errors.minlength" i18n>
-                        Minimum length of 2 characters
-                </div>
-                <div><app-monthyearselector [options]="options" (change)="onChange($event)" formControlName="monthyear"></app-monthyearselector></div>
-                <div><button type="submit" [disabled]="!sampleForm.valid">Submit</button></div>
-                <div>Form Valid: {{ sampleForm.valid }}</div>
-        </form>
+        <div style="margin-bottom: 1rem;">
+                <form [formGroup]="sampleForm" (ngSubmit)="onSubmit()">
+                        <div><input placeholder="Name" formControlName="name" name="name"></div>
+                        <div style="color: red;" *ngIf="!sampleForm.controls['name'].valid && sampleForm.controls['name'].errors.minlength" i18n>
+                                Minimum length of 2 characters
+                        </div>
+                        <div><app-monthyearselector placeholder="Enter date" [options]="options" (change)="onChange($event)" formControlName="monthyear"></app-monthyearselector></div>
+                        <div>
+                                <div>
+                                        <input type="checkbox" formControlName="maxEnabled" name="maxEnabled" id="maxEnabled"> 
+                                        <label for="maxEnabled">Max: <input type="number" style="width: 100px;" formControlName="max" name="max"></label>
+                                </div>
+                        </div>
+                        <div><button type="submit" [disabled]="!sampleForm.valid">Submit</button></div>
+                </form>
+        </div>
+        <div>
+                <div style="font-weight: bold;">Form State:</div>
+                <div>Valid: {{ sampleForm.valid }}</div>
+                <div>Value: {{ sampleForm.value | json }}</div>
+        </div>
 </div>

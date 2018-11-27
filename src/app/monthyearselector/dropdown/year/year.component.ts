@@ -35,6 +35,7 @@ export class YearComponent implements OnInit, OnDestroy {
 
   // Year forward click event
   yearForward(): void {
+    console.log('this.options', this.options);
     this.year++;
     this.yearChange.emit(this.year);
   }
