@@ -16,58 +16,49 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
 export class MonthyearselectorComponent implements OnInit, ControlValueAccessor {
+  // Setup defaults
+  defaultOptions: IMonthYearSelectorOptions = {
+    closeOnSelect: false,
+    disabled: false,
+    disabledDates: [],
+    disableDateRanges: [],
+    forceOpenDirection: null,
+    format: 'yyyy-mm',
+    resetYearOnBlur: true,
+    yearMin: null,
+    yearMax: null,
+    yearStart: null
+  };
   _options: IMonthYearSelectorOptions;
-  @Output() change = new EventEmitter();
-  @Output() optionsChange = new EventEmitter();
   @Input()
   set options(val: IMonthYearSelectorOptions) {
-    this._options = val;
+    this._options = this.optionsValidate(val);
   }
   get options(): IMonthYearSelectorOptions {
     return this._options;
   }
   @Input() placeholder: string;
+  @Output() change = new EventEmitter();
   dropdownToggled: boolean = false;
   dateSelected: IMonthYearSelectorDate;
 
   constructor() { }
 
   // Init
-  ngOnInit() {
-    // Setup options
-    this.optionsSetup();
-  }
-
-  // Setup options
-  optionsSetup(): void {
-    // Setup defaults
-    const defaultOptions: IMonthYearSelectorOptions = {
-      closeOnSelect: false,
-      disabled: false,
-      disabledDates: [],
-      disableDateRanges: [],
-      forceOpenDirection: null,
-      format: 'yyyy-mm',
-      resetYearOnBlur: true,
-      yearMin: null,
-      yearMax: null,
-      yearStart: null
-    };
-    // Set options
-    this.options = Object.assign(defaultOptions, this.options);
-    // Validate @Input options
-    if (!this.optionsValidate(this.options)) { return; }
-  }
+  ngOnInit() { }
 
   // Validate options
-  optionsValidate(options: IMonthYearSelectorOptions): boolean {
+  optionsValidate(options: IMonthYearSelectorOptions): IMonthYearSelectorOptions {
+    // Validate options
     if (options.yearStart && options.yearStart < options.yearMin) {
       throw new Error('ng-month-year-selector error: yearStart must be >= yearMin');
     }
     if (options.yearStart && options.yearStart > options.yearMax) {
       throw new Error('ng-month-year-selector error: yearStart must be <= yearMax');
     }
-    return true;
+    // Apply defaults
+    Object.keys(this.defaultOptions).forEach(optKey => options[optKey] = options[optKey] ? options[optKey] : this.defaultOptions[optKey]);
+    return options;
   }
 
   // selected event for dropdown component
@@ -93,6 +84,7 @@ export class MonthyearselectorComponent implements OnInit, ControlValueAccessor 
   // Toggle selector
   toggle(): void {
     this.dropdownToggled = !this.dropdownToggled;
+    console.log(this.options);
   }
 
   // Setup [ngModel] binding via ControlValueAccessor
