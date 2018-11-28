@@ -45,6 +45,7 @@
                                                         <option value="left">left</option>
                                                         <option value="right">right</option>
                                                         <option value="middle">middle</option>
+                                                        <option [value]="null">auto (null)</option>
                                                 </select>
                                         </label>
                                 </div>
@@ -52,9 +53,9 @@
                                         <input type="checkbox" formControlName="formatEnabled" name="formatEnabled" id="formatEnabled"> 
                                         <label for="formatEnabled">format: 
                                                 <select formControlName="format" name="format">
-                                                        <option value="yyyy mmm">yyyy mmm</option>
-                                                        <option value="yyyy-mm">yyyy-mm</option>
+                                                        <option value="mmm yyyy">mmm yyyy</option>
                                                         <option value="mmmm yyyy">mmmm yyyy</option>
+                                                        <option value="yyyy-mm">yyyy-mm</option>
                                                         <option value="mm-yy">mm-yy</option>
                                                         <option value="yyyy">yyyy</option>
                                                         <option value="yy">yy</option>

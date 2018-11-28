@@ -23,7 +23,7 @@ export class MonthyearselectorComponent implements OnInit, ControlValueAccessor 
     disabledDates: [],
     disableDateRanges: [],
     forceOpenDirection: null,
-    format: 'yyyy-mm',
+    format: 'mmm yyyy',
     resetYearOnBlur: true,
     yearMin: null,
     yearMax: null,

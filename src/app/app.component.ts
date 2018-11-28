@@ -12,12 +12,12 @@ export class AppComponent implements OnInit, OnDestroy {
   dataModel = null;
   title = 'date-year-selector';
   options: IMonthYearSelectorOptions = {
-    disabled: false,
+    // disabled: false,
     // yearMax: (new Date).getFullYear() + 10,
     // yearMin: (new Date).getFullYear() - 10,
-    closeOnSelect: true,
+    // closeOnSelect: true,
     // yearStart: 2010,
-    format: 'yyyy mmm', // 'yyyy-mm yy mmm mmmm',
+    // format: 'yyyy mmm', // 'yyyy-mm yy mmm mmmm',
     // forceOpenLeft: true,
     // forceOpenRight: true,
     disabledDates: [
@@ -52,7 +52,7 @@ export class AppComponent implements OnInit, OnDestroy {
     forceOpenDirectionEnabled: [false],
     forceOpenDirection: ['left'],
     formatEnabled: [false],
-    format: ['yyyy mmm']
+    format: ['mmm yyyy']
   });
 
   constructor(private formBuilder: FormBuilder) {}
@@ -100,12 +100,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
   updateForceOpenDirection() {
     console.log('updateForceOpenDirection', this.sampleForm.controls.forceOpenDirection.value);
-    this.options.forceOpenDirection = this.sampleForm.controls.forceOpenDirection.value;
+    this.options.forceOpenDirection = this.sampleForm.controls.forceOpenDirectionEnabled.value ? this.sampleForm.controls.forceOpenDirection.value : null;
   }
 
   updateFormat() {
     console.log('updateFormat', this.sampleForm.controls.format.value);
-    this.options.format = this.sampleForm.controls.format.value;
+    this.options.format = this.sampleForm.controls.formatEnabled.value ? this.sampleForm.controls.format.value : 'yyyy mmm';
   }
 
   onChange(e: { year: number, month: number }) {
