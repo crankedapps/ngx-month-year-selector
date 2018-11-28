@@ -29,12 +29,16 @@ export class AppComponent implements OnInit, OnDestroy {
     ]
     */
   };
-  subMaxChange: Subscription;
-  subMaxCheckChange: Subscription;
-  subMinChange: Subscription;
-  subMinCheckChange: Subscription;
+  subMax: Subscription;
+  subMaxCheck: Subscription;
+  subMin: Subscription;
+  subMinCheck: Subscription;
   subDisabled: Subscription;
   subCloseOnSelect: Subscription;
+  subForceOpenDirectionCheck: Subscription;
+  subForceOpenDirection: Subscription;
+  subFormatEnabled: Subscription;
+  subFormat: Subscription;
 
   sampleForm = this.formBuilder.group({
     name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
@@ -44,7 +48,11 @@ export class AppComponent implements OnInit, OnDestroy {
     minEnabled: [false],
     min: [(new Date).getFullYear() - 10],
     inputDisabled: [false],
-    closeOnSelect: [true]
+    closeOnSelect: [true],
+    forceOpenDirectionEnabled: [false],
+    forceOpenDirection: ['left'],
+    formatEnabled: [false],
+    format: ['yyyy mmm']
   });
 
   constructor(private formBuilder: FormBuilder) {}
@@ -54,12 +62,16 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   initSubscriptions() {
-    this.subMaxChange = this.sampleForm.controls.max.valueChanges.subscribe(val => { this.updateMax(); });
-    this.subMaxCheckChange = this.sampleForm.controls.maxEnabled.valueChanges.subscribe(val => { this.updateMax(); });
-    this.subMinChange = this.sampleForm.controls.min.valueChanges.subscribe(val => { this.updateMin(); });
-    this.subMinCheckChange = this.sampleForm.controls.minEnabled.valueChanges.subscribe(val => { this.updateMin(); });
+    this.subMax = this.sampleForm.controls.max.valueChanges.subscribe(val => { this.updateMax(); });
+    this.subMaxCheck = this.sampleForm.controls.maxEnabled.valueChanges.subscribe(val => { this.updateMax(); });
+    this.subMin = this.sampleForm.controls.min.valueChanges.subscribe(val => { this.updateMin(); });
+    this.subMinCheck = this.sampleForm.controls.minEnabled.valueChanges.subscribe(val => { this.updateMin(); });
     this.subDisabled = this.sampleForm.controls.inputDisabled.valueChanges.subscribe(val => { this.updateDisabled(); });
     this.subCloseOnSelect = this.sampleForm.controls.closeOnSelect.valueChanges.subscribe(val => { this.updateCloseOnSelect(); });
+    this.subForceOpenDirectionCheck = this.sampleForm.controls.forceOpenDirectionEnabled.valueChanges.subscribe(val => { this.updateForceOpenDirection(); });
+    this.subForceOpenDirection = this.sampleForm.controls.forceOpenDirection.valueChanges.subscribe(val => { this.updateForceOpenDirection(); });
+    this.subFormatEnabled = this.sampleForm.controls.formatEnabled.valueChanges.subscribe(val => { this.updateFormat(); });
+    this.subFormat = this.sampleForm.controls.format.valueChanges.subscribe(val => { this.updateFormat(); });
   }
 
   updateMax() {
@@ -86,6 +98,16 @@ export class AppComponent implements OnInit, OnDestroy {
     this.options.closeOnSelect = this.sampleForm.controls.closeOnSelect.value;
   }
 
+  updateForceOpenDirection() {
+    console.log('updateForceOpenDirection', this.sampleForm.controls.forceOpenDirection.value);
+    this.options.forceOpenDirection = this.sampleForm.controls.forceOpenDirection.value;
+  }
+
+  updateFormat() {
+    console.log('updateFormat', this.sampleForm.controls.format.value);
+    this.options.format = this.sampleForm.controls.format.value;
+  }
+
   onChange(e: { year: number, month: number }) {
     console.log('onChange', e);
   }
@@ -95,11 +117,15 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.subMaxChange) { this.subMaxChange.unsubscribe(); }
-    if (this.subMaxCheckChange) { this.subMaxCheckChange.unsubscribe(); }
-    if (this.subMinChange) { this.subMinChange.unsubscribe(); }
-    if (this.subMinCheckChange) { this.subMinCheckChange.unsubscribe(); }
+    if (this.subMax) { this.subMax.unsubscribe(); }
+    if (this.subMaxCheck) { this.subMaxCheck.unsubscribe(); }
+    if (this.subMin) { this.subMin.unsubscribe(); }
+    if (this.subMinCheck) { this.subMinCheck.unsubscribe(); }
     if (this.subDisabled) { this.subDisabled.unsubscribe(); }
     if (this.subCloseOnSelect) { this.subCloseOnSelect.unsubscribe(); }
+    if (this.subForceOpenDirectionCheck) { this.subForceOpenDirectionCheck.unsubscribe(); }
+    if (this.subForceOpenDirection) { this.subForceOpenDirection.unsubscribe(); }
+    if (this.subFormatEnabled) { this.subFormatEnabled.unsubscribe(); }
+    if (this.subFormat) { this.subFormat.unsubscribe(); }
   }
 }

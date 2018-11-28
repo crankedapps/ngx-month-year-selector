@@ -32,11 +32,37 @@
                                 </div>
                                 <div>
                                         <input type="checkbox" formControlName="inputDisabled" name="inputDisabled" id="inputDisabled"> 
-                                        <label for="inputDisabled">disabled</label>
+                                        <label for="inputDisabled">disabled: {{ options.disabled }}</label>
                                 </div>
                                 <div>
                                         <input type="checkbox" formControlName="closeOnSelect" name="closeOnSelect" id="closeOnSelect"> 
-                                        <label for="closeOnSelect">closeOnSelect</label>
+                                        <label for="closeOnSelect">closeOnSelect: {{ options.closeOnSelect }}</label>
+                                </div>
+                                <div>
+                                        <input type="checkbox" formControlName="forceOpenDirectionEnabled" name="forceOpenDirectionEnabled" id="forceOpenDirectionEnabled"> 
+                                        <label for="forceOpenDirectionEnabled">forceOpenDirection: 
+                                                <select formControlName="forceOpenDirection" name="forceOpenDirection">
+                                                        <option value="left">left</option>
+                                                        <option value="right">right</option>
+                                                        <option value="middle">middle</option>
+                                                </select>
+                                        </label>
+                                </div>
+                                <div>
+                                        <input type="checkbox" formControlName="formatEnabled" name="formatEnabled" id="formatEnabled"> 
+                                        <label for="formatEnabled">format: 
+                                                <select formControlName="format" name="format">
+                                                        <option value="yyyy mmm">yyyy mmm</option>
+                                                        <option value="yyyy-mm">yyyy-mm</option>
+                                                        <option value="mmmm yyyy">mmmm yyyy</option>
+                                                        <option value="mm-yy">mm-yy</option>
+                                                        <option value="yyyy">yyyy</option>
+                                                        <option value="yy">yy</option>
+                                                        <option value="mmmm">mmmm</option>
+                                                        <option value="mmm">mmm</option>
+                                                        <option value="mm">mm</option>
+                                                </select>
+                                        </label>
                                 </div>
                         </div>
                         <div><button type="submit" [disabled]="!sampleForm.valid">Submit</button></div>
