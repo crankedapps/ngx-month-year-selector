@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IMonthYearSelectorDate } from '../../../models/IMonthYearSelectorDate';
-import { IMonthYearSelectorOptions } from '../../../models/IMonthYearSelectorOptions';
-import { monthAbbrv } from '../../../lang.en';
+import { IMonthYearSelectorDate } from '../../models/IMonthYearSelectorDate';
+import { IMonthYearSelectorOptions } from '../../models/IMonthYearSelectorOptions';
+import { monthAbbrv } from '../../lang.en';
 
 @Component({
   selector: 'app-month',

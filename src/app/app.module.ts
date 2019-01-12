@@ -8,6 +8,8 @@ import { TextinputComponent } from './monthyearselector/textinput/textinput.comp
 import { DropdownComponent } from './monthyearselector/dropdown/dropdown.component';
 import { YearComponent } from './monthyearselector/dropdown/year/year.component';
 import { MonthComponent } from './monthyearselector/dropdown/month/month.component';
+import { MonthyearselectorDirective } from './monthyearselector/monthyearselector.directive';
+import { DynamicComponent } from './monthyearselector/dynamic/dynamic.component';
 
 @NgModule({
   imports: [
@@ -21,7 +23,13 @@ import { MonthComponent } from './monthyearselector/dropdown/month/month.compone
     TextinputComponent,
     DropdownComponent,
     YearComponent,
-    MonthComponent
+    MonthComponent,
+    MonthyearselectorDirective,
+    DynamicComponent
+  ],
+  entryComponents: [
+    DynamicComponent,
+    DropdownComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

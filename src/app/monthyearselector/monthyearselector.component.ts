@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { IMonthYearSelectorOptions } from '../models/IMonthYearSelectorOptions';
-import { IMonthYearSelectorDate } from '../models/IMonthYearSelectorDate';
+import { IMonthYearSelectorOptions } from './models/IMonthYearSelectorOptions';
+import { IMonthYearSelectorDate } from './models/IMonthYearSelectorDate';
+import { NGXMonthYear } from './NGXMonthYear';
 
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
@@ -16,23 +17,9 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
 export class MonthyearselectorComponent implements OnInit, ControlValueAccessor {
-  // Setup defaults
-  defaultOptions: IMonthYearSelectorOptions = {
-    closeOnSelect: false,
-    disabled: false,
-    disabledDates: [],
-    disableDateRanges: [],
-    forceOpenDirection: null,
-    format: 'mmm yyyy',
-    resetYearOnBlur: true,
-    yearMin: null,
-    yearMax: null,
-    yearStart: null
-  };
-  _options: IMonthYearSelectorOptions;
   @Input()
   set options(val: IMonthYearSelectorOptions) {
-    this._options = this.optionsValidate(val);
+    this._options = this.ngxMonthYear.setDefaultOptions(val);
   }
   get options(): IMonthYearSelectorOptions {
     return this._options;
@@ -41,25 +28,13 @@ export class MonthyearselectorComponent implements OnInit, ControlValueAccessor 
   @Output() change = new EventEmitter();
   dropdownToggled: boolean = false;
   dateSelected: IMonthYearSelectorDate;
+  ngxMonthYear = new NGXMonthYear();
+  _options: IMonthYearSelectorOptions;
 
   constructor() { }
 
   // Init
   ngOnInit() { }
-
-  // Validate options
-  optionsValidate(options: IMonthYearSelectorOptions): IMonthYearSelectorOptions {
-    // Validate options
-    if (options.yearStart && options.yearStart < options.yearMin) {
-      throw new Error('ng-month-year-selector error: yearStart must be >= yearMin');
-    }
-    if (options.yearStart && options.yearStart > options.yearMax) {
-      throw new Error('ng-month-year-selector error: yearStart must be <= yearMax');
-    }
-    // Apply defaults
-    Object.keys(this.defaultOptions).forEach(optKey => options[optKey] = options[optKey] ? options[optKey] : this.defaultOptions[optKey]);
-    return options;
-  }
 
   // selected event for dropdown component
   onDateSelected(e: IMonthYearSelectorDate): void {
@@ -67,9 +42,6 @@ export class MonthyearselectorComponent implements OnInit, ControlValueAccessor 
     // this.dateSelected = e;
     this.value = e;
     // this.change.emit(this.value);
-    if (this.options.closeOnSelect) {
-      this.dropdownToggled = false;
-    }
   }
 
   // text input click event

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IMonthYearSelectorOptions } from './models/IMonthYearSelectorOptions';
+import { IMonthYearSelectorOptions } from './monthyearselector/models/IMonthYearSelectorOptions';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
@@ -39,6 +39,8 @@ export class AppComponent implements OnInit, OnDestroy {
   subForceOpenDirection: Subscription;
   subFormatEnabled: Subscription;
   subFormat: Subscription;
+  optionsDirective = { closeOnSelect: false };
+  optionsDirectiveForm = { closeOnSelect: true };
 
   sampleForm = this.formBuilder.group({
     name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
@@ -53,6 +55,9 @@ export class AppComponent implements OnInit, OnDestroy {
     forceOpenDirection: ['left'],
     formatEnabled: [false],
     format: ['mmm yyyy']
+  });
+  directiveForm = this.formBuilder.group({
+    date: [null, Validators.required]
   });
 
   constructor(private formBuilder: FormBuilder) {}
