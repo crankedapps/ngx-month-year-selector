@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, HostListener, OnChanges
 import { IMonthYearSelectorOptions } from '../models/IMonthYearSelectorOptions';
 import { IMonthYearSelectorDate } from '../models/IMonthYearSelectorDate';
 import { NGXMonthYear } from '../NGXMonthYear';
+import { _getComponentHostLElementNode } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-dropdown',
@@ -19,10 +20,11 @@ export class DropdownComponent implements OnInit, OnChanges {
   openDirection: 'left' | 'right' | 'middle' = 'right';
   @ViewChild('dropdownWrapper') dropdownWrapper: ElementRef;
   ngxMonthYear = new NGXMonthYear();
+  offsetLeft: number;
+  dropdownReady: boolean;
+  allowClose: boolean;
 
-  private wasInside = false;
-
-  constructor() { }
+  constructor(private eRef: ElementRef) { }
 
   // Init
   ngOnInit() {
@@ -39,19 +41,14 @@ export class DropdownComponent implements OnInit, OnChanges {
   }
 
   // Detect when click outside of dropdown component
-  @HostListener('click')
-  clickInside() {
-    console.log('clickInside');
-    this.wasInside = true;
-  }
-  @HostListener('document:click')
-  clickout() {
-    console.log('clickout');
-    if (!this.wasInside) {
-      // this.close();
-      this.displayChange.emit(false);
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
+    if (!this.eRef.nativeElement.contains(event.target)) {
+      if (this.dropdownReady) {
+        this.close();
+        this.displayChange.emit(false);
+      }
     }
-    this.wasInside = false;
   }
 
   // Listen for changes to @Input values
@@ -71,6 +68,7 @@ export class DropdownComponent implements OnInit, OnChanges {
     if (this.month === undefined || this.year === undefined) { this.clearState(); }
     setTimeout(() => {
       this.detectOrientation();
+      this.dropdownReady = true;
     }, 0);
   }
 
@@ -93,6 +91,7 @@ export class DropdownComponent implements OnInit, OnChanges {
   // Close dropdown
   close(): void {
     this.display = false;
+    this.dropdownReady = false;
   }
 
   // Clear month/year view state

@@ -7,7 +7,7 @@
   <div class="year-label" *ngIf="!yearEditState" (click)="yearClick()">{{ year }}</div>
   <div class="year-edit" *ngIf="yearEditState">
     <input type="number" [min]="options.yearMin" [max]="options.yearMax" [(ngModel)]="yearEdit" (blur)="yearBlur()" (keypress)="yearKeyPress($event)"
-     [class.year-edit--invalid]="!yearEditValid()" #yearEditInput>
+     [class.year-edit--invalid]="!yearEditValid()" autocomplete="off" #yearEditInput>
   </div>
   <div class="year-nav">
     <a (click)="yearForward()" class="year-nav-link" *ngIf="!options.yearMax || year < options.yearMax">

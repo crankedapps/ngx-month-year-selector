@@ -12,20 +12,20 @@ export class AppComponent implements OnInit, OnDestroy {
   dataModel = null;
   title = 'date-year-selector';
   options: IMonthYearSelectorOptions = {
-    // disabled: false,
-    // yearMax: (new Date).getFullYear() + 10,
-    // yearMin: (new Date).getFullYear() - 10,
-    // closeOnSelect: true,
-    // yearStart: 2010,
-    // format: 'yyyy mmm', // 'yyyy-mm yy mmm mmmm',
-    // forceOpenLeft: true,
-    // forceOpenRight: true,
+    /*
+    disabled: false,
+    yearMax: (new Date).getFullYear() + 10,
+    yearMin: (new Date).getFullYear() - 10,
+    closeOnSelect: true,
+    yearStart: 2010,
+    format: 'yyyy mmm', // 'yyyy-mm yy mmm mmmm',
+    forceOpenLeft: true,
+    forceOpenRight: true,
     disabledDates: [
       { year: 2018, month: 10 } // individual date
     ],
-    /*
     disableDateRanges: [
-      [{ year: 2017, month: 5 }, { year: 2019, month: 6 }]
+      [{ year: 2017, month: 5 }, { year: 2019, month: 6 }] // [start,end][]
     ]
     */
   };
@@ -39,8 +39,11 @@ export class AppComponent implements OnInit, OnDestroy {
   subForceOpenDirection: Subscription;
   subFormatEnabled: Subscription;
   subFormat: Subscription;
-  optionsDirective = { closeOnSelect: false };
-  optionsDirectiveForm = { closeOnSelect: true };
+  optionsDirective: IMonthYearSelectorOptions = { closeOnSelect: false };
+  optionsDirectiveForm: IMonthYearSelectorOptions = {
+    closeOnSelect: true,
+    yearMin: 1999
+  };
 
   sampleForm = this.formBuilder.group({
     name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
@@ -67,16 +70,16 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   initSubscriptions() {
-    this.subMax = this.sampleForm.controls.max.valueChanges.subscribe(val => { this.updateMax(); });
-    this.subMaxCheck = this.sampleForm.controls.maxEnabled.valueChanges.subscribe(val => { this.updateMax(); });
-    this.subMin = this.sampleForm.controls.min.valueChanges.subscribe(val => { this.updateMin(); });
-    this.subMinCheck = this.sampleForm.controls.minEnabled.valueChanges.subscribe(val => { this.updateMin(); });
-    this.subDisabled = this.sampleForm.controls.inputDisabled.valueChanges.subscribe(val => { this.updateDisabled(); });
-    this.subCloseOnSelect = this.sampleForm.controls.closeOnSelect.valueChanges.subscribe(val => { this.updateCloseOnSelect(); });
-    this.subForceOpenDirectionCheck = this.sampleForm.controls.forceOpenDirectionEnabled.valueChanges.subscribe(val => { this.updateForceOpenDirection(); });
-    this.subForceOpenDirection = this.sampleForm.controls.forceOpenDirection.valueChanges.subscribe(val => { this.updateForceOpenDirection(); });
-    this.subFormatEnabled = this.sampleForm.controls.formatEnabled.valueChanges.subscribe(val => { this.updateFormat(); });
-    this.subFormat = this.sampleForm.controls.format.valueChanges.subscribe(val => { this.updateFormat(); });
+    this.subMax = this.sampleForm.controls.max.valueChanges.subscribe(() => { this.updateMax(); });
+    this.subMaxCheck = this.sampleForm.controls.maxEnabled.valueChanges.subscribe(() => { this.updateMax(); });
+    this.subMin = this.sampleForm.controls.min.valueChanges.subscribe(() => { this.updateMin(); });
+    this.subMinCheck = this.sampleForm.controls.minEnabled.valueChanges.subscribe(() => { this.updateMin(); });
+    this.subDisabled = this.sampleForm.controls.inputDisabled.valueChanges.subscribe(() => { this.updateDisabled(); });
+    this.subCloseOnSelect = this.sampleForm.controls.closeOnSelect.valueChanges.subscribe(() => { this.updateCloseOnSelect(); });
+    this.subForceOpenDirectionCheck = this.sampleForm.controls.forceOpenDirectionEnabled.valueChanges.subscribe(() => { this.updateForceOpenDirection(); });
+    this.subForceOpenDirection = this.sampleForm.controls.forceOpenDirection.valueChanges.subscribe(() => { this.updateForceOpenDirection(); });
+    this.subFormatEnabled = this.sampleForm.controls.formatEnabled.valueChanges.subscribe(() => { this.updateFormat(); });
+    this.subFormat = this.sampleForm.controls.format.valueChanges.subscribe(() => { this.updateFormat(); });
   }
 
   updateMax() {

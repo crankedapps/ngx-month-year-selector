@@ -1,6 +1,7 @@
 <div #dropdownWrapper class="dropdown-wrapper" 
   [class.dropdown-wrapper--open-left]="openDirection == 'left'" 
   [class.dropdown-wrapper--open-middle]="openDirection == 'middle'" 
+  [style.left]="offsetLeft ? offsetLeft + 'px' : null"
   (window:resize)="onResize($event)" 
   *ngIf="display">
   <app-year [options]="options" [(year)]="year"></app-year>

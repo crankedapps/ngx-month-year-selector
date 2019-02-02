@@ -46,6 +46,8 @@ export class MonthyearselectorDirective implements OnInit, OnDestroy {
     const factory = this.factoryResolver.resolveComponentFactory(DropdownComponent);
     const component = factory.create(this.viewContainerRef.parentInjector);
     if (options) { component.instance.options = options; }
+    console.log('offsetLeft', this.el.nativeElement.offsetLeft);
+    component.instance.offsetLeft = this.el.nativeElement.offsetLeft;
     this.viewContainerRef.insert(component.hostView);
     return component;
   }

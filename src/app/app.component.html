@@ -1,10 +1,10 @@
 <div style="margin-bottom: 2rem;">
   <h2>ngx-month-year-selector</h2>
-  Month/year selector for Angular 6+
+  Month/year selector form control for Angular 6+ with support for ngModel binding and Reactive Forms.
 </div>
 <div style="margin-bottom: 2rem;">
   <h2>ngModel binding:</h2>
-  Label: <app-monthyearselector [(ngModel)]="dataModel" [options]="options" (change)="onChange($event)"></app-monthyearselector>
+  Label: <input [(ngModel)]="dataModel" [appMonthyearselector]="options">
   <div><b>[(ngModel)]:</b> {{ dataModel | json }}</div>
   <div><b>Picker options:</b> {{ options | json }}</div>
 </div>
@@ -18,7 +18,7 @@
         Minimum length of 2 characters
       </div>
       <div>
-        Date: <app-monthyearselector placeholder="Enter date" [options]="options" (change)="onChange($event)" formControlName="monthyear"></app-monthyearselector>
+        Date: <input placeholder="Enter date" [appMonthyearselector]="options" formControlName="monthyear">
       </div>
       <div>
         <div>
@@ -74,16 +74,16 @@
     <div><b>sampleForm.value:</b> {{ sampleForm.value | json }}</div>
   </div>
 </div>
-<div>
+<div style="margin-bottom: 2rem;">
   <h2>Directive</h2>
   <div><b>optionsDirective:</b> {{ optionsDirective | json }}</div>
   <div><b>inputDate.value:</b> {{ inputDate.value | json }}</div>
-  Label: <input type="text" [appMonthyearselector]="optionsDirective" #inputDate>
+  Label: <input type="text" [appMonthyearselector]="optionsDirective" #inputDate autocomplete="off" readonly>
 </div>
 <div>
   <h2>Directive as Reactive Form</h2>
   <form [formGroup]="directiveForm">
-    <div><input placeholder="Date" formControlName="date" name="date" [appMonthyearselector]="optionsDirectiveForm"></div>
+    <div><input placeholder="Date" formControlName="date" name="date" [appMonthyearselector]="optionsDirectiveForm" autocomplete="off" readonly></div>
     <div><b>directiveForm.valid:</b> {{ directiveForm.valid | json }}</div>
     <div><b>directiveForm.value:</b> {{ directiveForm.value | json }}</div>
   </form>
