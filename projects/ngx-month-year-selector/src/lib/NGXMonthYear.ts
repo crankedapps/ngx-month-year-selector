@@ -8,9 +8,8 @@ export class NGXMonthYear {
   // Setup defaults
   defaultOptions: IMonthYearSelectorOptions = {
     closeOnSelect: true,
-    disabled: false,
     disabledDates: [],
-    disableDateRanges: [],
+    disabledDateRanges: [],
     forceOpenDirection: null,
     format: 'mmm yyyy',
     resetYearOnBlur: true,

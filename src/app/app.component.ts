@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IMonthYearSelectorOptions } from 'ngx-month-year-selector';
+import { IMonthYearSelectorOptions, IMonthYearSelectorDate } from 'ngx-month-year-selector';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
     disabledDates: [
       { year: 2018, month: 10 } // individual date
     ],
-    disableDateRanges: [
+    disabledDateRanges: [
       [{ year: 2017, month: 5 }, { year: 2019, month: 6 }] // [start,end][]
     ]
     */
@@ -39,15 +39,10 @@ export class AppComponent implements OnInit, OnDestroy {
   subForceOpenDirection: Subscription;
   subFormatEnabled: Subscription;
   subFormat: Subscription;
-  optionsDirective: IMonthYearSelectorOptions = { closeOnSelect: false };
-  optionsDirectiveForm: IMonthYearSelectorOptions = {
-    closeOnSelect: true,
-    yearMin: 1999
-  };
 
   sampleForm = this.formBuilder.group({
     name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-    monthyear: [null, Validators.compose([Validators.required])],
+    monthYear: [null, Validators.compose([Validators.required])],
     maxEnabled: [false],
     max: [(new Date).getFullYear() + 10],
     minEnabled: [false],
@@ -58,9 +53,6 @@ export class AppComponent implements OnInit, OnDestroy {
     forceOpenDirection: ['left'],
     formatEnabled: [false],
     format: ['mmm yyyy']
-  });
-  directiveForm = this.formBuilder.group({
-    date: [null, Validators.required]
   });
 
   constructor(private formBuilder: FormBuilder) {}
@@ -74,7 +66,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subMaxCheck = this.sampleForm.controls.maxEnabled.valueChanges.subscribe(() => { this.updateMax(); });
     this.subMin = this.sampleForm.controls.min.valueChanges.subscribe(() => { this.updateMin(); });
     this.subMinCheck = this.sampleForm.controls.minEnabled.valueChanges.subscribe(() => { this.updateMin(); });
-    this.subDisabled = this.sampleForm.controls.inputDisabled.valueChanges.subscribe(() => { this.updateDisabled(); });
+    this.subDisabled = this.sampleForm.controls.inputDisabled.valueChanges.subscribe(val => { this.updateDisabled(); });
     this.subCloseOnSelect = this.sampleForm.controls.closeOnSelect.valueChanges.subscribe(() => { this.updateCloseOnSelect(); });
     this.subForceOpenDirectionCheck = this.sampleForm.controls.forceOpenDirectionEnabled.valueChanges.subscribe(() => { this.updateForceOpenDirection(); });
     this.subForceOpenDirection = this.sampleForm.controls.forceOpenDirection.valueChanges.subscribe(() => { this.updateForceOpenDirection(); });
@@ -98,7 +90,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   updateDisabled() {
     console.log('updateDisabled', this.sampleForm.controls.inputDisabled.value);
-    this.options.disabled = this.sampleForm.controls.inputDisabled.value;
+    if (this.sampleForm.controls.inputDisabled.value) {
+      this.sampleForm.controls.monthYear.disable();
+    } else {
+      this.sampleForm.controls.monthYear.enable();
+    }
   }
 
   updateCloseOnSelect() {
@@ -114,6 +110,7 @@ export class AppComponent implements OnInit, OnDestroy {
   updateFormat() {
     console.log('updateFormat', this.sampleForm.controls.format.value);
     this.options.format = this.sampleForm.controls.formatEnabled.value ? this.sampleForm.controls.format.value : 'yyyy mmm';
+    this.options = Object.assign({}, this.options);
   }
 
   onChange(e: { year: number, month: number }) {
@@ -122,6 +119,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     console.log('onSubmit', this.sampleForm.value);
+  }
+
+  onEventEmitter(e: IMonthYearSelectorDate): void {
+    console.log('onEventEmitter', e);
+    alert(JSON.stringify(e));
   }
 
   ngOnDestroy() {

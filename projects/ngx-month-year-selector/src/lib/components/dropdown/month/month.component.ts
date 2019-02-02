@@ -35,7 +35,7 @@ export class MonthComponent implements OnInit {
 
   // Month disabled state
   stateMonthDisabled(i: number): boolean {
-    const disabledRanges = this.options.disableDateRanges && this.options.disableDateRanges.filter((range) => {
+    const disabledRanges = this.options.disabledDateRanges && this.options.disabledDateRanges.filter((range) => {
       const startDate = new Date(range[0].year, range[0].month, 1);
       const endDate = new Date(range[1].year, range[1].month, 1);
       const viewDate = new Date(this.year, i, 1);
