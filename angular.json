@@ -121,6 +121,41 @@
           }
         }
       }
+    },
+    "ngx-month-year-selector": {
+      "root": "projects/ngx-month-year-selector",
+      "sourceRoot": "projects/ngx-month-year-selector/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "targets": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-month-year-selector/tsconfig.lib.json",
+            "project": "projects/ngx-month-year-selector/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-month-year-selector/src/test.ts",
+            "tsConfig": "projects/ngx-month-year-selector/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-month-year-selector/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-month-year-selector/tsconfig.lib.json",
+              "projects/ngx-month-year-selector/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "date-year-selector"

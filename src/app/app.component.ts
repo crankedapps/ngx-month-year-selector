@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IMonthYearSelectorOptions } from './monthyearselector/models/IMonthYearSelectorOptions';
+import { IMonthYearSelectorOptions } from 'ngx-month-year-selector';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 

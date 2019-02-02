@@ -1,15 +1,15 @@
 import { Directive, ElementRef, OnInit, HostListener, Renderer2, Inject, ViewContainerRef, ComponentRef, OnDestroy, Input, ComponentFactoryResolver } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { DropdownComponent } from './dropdown/dropdown.component';
+import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { NGXMonthYear } from './NGXMonthYear';
-import { IMonthYearSelectorOptions } from '../monthyearselector/models/IMonthYearSelectorOptions';
+import { IMonthYearSelectorOptions } from './models/IMonthYearSelectorOptions';
 
 @Directive({
-  selector: '[appMonthyearselector]'
+  selector: '[ngxMonthYearSelector]'
 })
 export class MonthyearselectorDirective implements OnInit, OnDestroy {
-  @Input('appMonthyearselector') appMonthyearselector: IMonthYearSelectorOptions;
+  @Input('ngxMonthYearSelector') ngxMonthYearSelector: IMonthYearSelectorOptions;
   componentRef: ComponentRef<DropdownComponent>;
   subDateSelected: Subscription;
   ngxMonthYear: NGXMonthYear = new NGXMonthYear();
@@ -22,13 +22,12 @@ export class MonthyearselectorDirective implements OnInit, OnDestroy {
     @Inject(ViewContainerRef) viewContainerRef,
     @Inject(ComponentFactoryResolver) factoryResolver
   ) {
-    // selectorService.setRootViewContainerRef(viewContainerRef);
     this.viewContainerRef = viewContainerRef;
     this.factoryResolver = factoryResolver;
   }
 
   ngOnInit() {
-    this.componentRef = this.addDynamicComponent(this.appMonthyearselector ? this.appMonthyearselector : {});
+    this.componentRef = this.addDynamicComponent(this.ngxMonthYearSelector ? this.ngxMonthYearSelector : {});
     this.subDateSelected = this.componentRef.instance.selected.subscribe(val => {
       this.renderer.setProperty(this.el.nativeElement, 'value', this.ngxMonthYear.formatValue('yyyy-mm', val));
       this.el.nativeElement.dispatchEvent(new Event('input'));
@@ -36,7 +35,7 @@ export class MonthyearselectorDirective implements OnInit, OnDestroy {
   }
 
   @HostListener('click') onClick() {
-    console.log('appMonthyearselector', this.appMonthyearselector);
+    console.log('ngxMonthYearSelector', this.ngxMonthYearSelector);
     console.log('options', this.componentRef.instance.options);
     this.componentRef.instance.display = !this.componentRef.instance.display;
     if (this.componentRef.instance.display) { this.componentRef.instance.onDisplayEnabled(); } else { this.componentRef.instance.onDisplayDisabled(); }

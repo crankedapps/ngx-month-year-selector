@@ -1,10 +1,10 @@
 <div style="margin-bottom: 2rem;">
   <h2>ngx-month-year-selector</h2>
-  Month/year selector form control for Angular 6+ with support for ngModel binding and Reactive Forms.
+  Month/year selector form control for Angular 6+ with support for ngModel binding and Reactive Forms and is independent from any UI frameworks (however should be compatible in all UI frameworks like Bootstrap & Angular Material).
 </div>
 <div style="margin-bottom: 2rem;">
   <h2>ngModel binding:</h2>
-  Label: <input [(ngModel)]="dataModel" [appMonthyearselector]="options">
+  Label: <input [(ngModel)]="dataModel" [ngxMonthYearSelector]="options">
   <div><b>[(ngModel)]:</b> {{ dataModel | json }}</div>
   <div><b>Picker options:</b> {{ options | json }}</div>
 </div>
@@ -18,7 +18,7 @@
         Minimum length of 2 characters
       </div>
       <div>
-        Date: <input placeholder="Enter date" [appMonthyearselector]="options" formControlName="monthyear">
+        Date: <input placeholder="Enter date" [ngxMonthYearSelector]="options" formControlName="monthyear">
       </div>
       <div>
         <div>
@@ -78,12 +78,12 @@
   <h2>Directive</h2>
   <div><b>optionsDirective:</b> {{ optionsDirective | json }}</div>
   <div><b>inputDate.value:</b> {{ inputDate.value | json }}</div>
-  Label: <input type="text" [appMonthyearselector]="optionsDirective" #inputDate autocomplete="off" readonly>
+  Label: <input type="text" [ngxMonthYearSelector]="optionsDirective" #inputDate autocomplete="off" readonly>
 </div>
 <div>
   <h2>Directive as Reactive Form</h2>
   <form [formGroup]="directiveForm">
-    <div><input placeholder="Date" formControlName="date" name="date" [appMonthyearselector]="optionsDirectiveForm" autocomplete="off" readonly></div>
+    <div><input placeholder="Date" formControlName="date" name="date" [ngxMonthYearSelector]="optionsDirectiveForm" autocomplete="off" readonly></div>
     <div><b>directiveForm.valid:</b> {{ directiveForm.valid | json }}</div>
     <div><b>directiveForm.value:</b> {{ directiveForm.value | json }}</div>
   </form>

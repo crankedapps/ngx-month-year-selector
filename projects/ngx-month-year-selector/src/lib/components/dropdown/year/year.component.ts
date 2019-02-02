@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { IMonthYearSelectorOptions } from '../../models/IMonthYearSelectorOptions';
+import { IMonthYearSelectorOptions } from '../../../models/IMonthYearSelectorOptions';
 
 @Component({
-  selector: 'app-year',
+  selector: 'lib-year',
   templateUrl: './year.component.html',
   styleUrls: ['./year.component.css']
 })

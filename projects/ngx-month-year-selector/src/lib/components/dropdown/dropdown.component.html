@@ -4,6 +4,6 @@
   [style.left]="offsetLeft ? offsetLeft + 'px' : null"
   (window:resize)="onResize($event)" 
   *ngIf="display">
-  <app-year [options]="options" [(year)]="year"></app-year>
-  <app-month [options]="options" [dateSelected]="dateSelected" [(month)]="month" [year]="year" (monthChange)="monthChange($event)"></app-month>
+  <lib-year [options]="options" [(year)]="year"></lib-year>
+  <lib-month [options]="options" [dateSelected]="dateSelected" [(month)]="month" [year]="year" (monthChange)="monthChange($event)"></lib-month>
 </div>

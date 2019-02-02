@@ -1,7 +1,10 @@
 import { IMonthYearSelectorOptions } from './models/IMonthYearSelectorOptions';
 import { IMonthYearSelectorDate } from './models/IMonthYearSelectorDate';
-import { monthNames, monthAbbrv } from './lang.en';
+import { monthNames, monthAbbrv } from './lang/en.lang';
+
+// @dynamic
 export class NGXMonthYear {
+
   // Setup defaults
   defaultOptions: IMonthYearSelectorOptions = {
     closeOnSelect: true,

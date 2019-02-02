@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener, OnChanges, SimpleChange, ViewChild, ElementRef } from '@angular/core';
-import { IMonthYearSelectorOptions } from '../models/IMonthYearSelectorOptions';
-import { IMonthYearSelectorDate } from '../models/IMonthYearSelectorDate';
-import { NGXMonthYear } from '../NGXMonthYear';
+import { IMonthYearSelectorOptions } from '../../models/IMonthYearSelectorOptions';
+import { IMonthYearSelectorDate } from '../../models/IMonthYearSelectorDate';
+import { NGXMonthYear } from '../../NGXMonthYear';
 import { _getComponentHostLElementNode } from '@angular/core/src/render3/instructions';
 
 @Component({
-  selector: 'app-dropdown',
+  selector: 'lib-dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.css']
 })

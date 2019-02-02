@@ -16,6 +16,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-month-year-selector": [
+        "dist/ngx-month-year-selector"
+      ],
+      "ngx-month-year-selector/*": [
+        "dist/ngx-month-year-selector/*"
+      ]
+    }
   }
 }
