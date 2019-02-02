@@ -1,9 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener, OnChanges, SimpleChange, ViewChild, ElementRef } from '@angular/core';
 import { IMonthYearSelectorOptions } from '../../models/IMonthYearSelectorOptions';
 import { IMonthYearSelectorDate } from '../../models/IMonthYearSelectorDate';
+import { NGXMonthYear } from '../../NGXMonthYear';
+import { _getComponentHostLElementNode } from '@angular/core/src/render3/instructions';
 
 @Component({
-  selector: 'app-dropdown',
+  selector: 'lib-dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.css']
 })
@@ -16,15 +18,18 @@ export class DropdownComponent implements OnInit, OnChanges {
   year: number;
   month: number;
   openDirection: 'left' | 'right' | 'middle' = 'right';
-  @ViewChild('dropdownWrapper')
-  dropdownWrapper: ElementRef;
+  @ViewChild('dropdownWrapper') dropdownWrapper: ElementRef;
+  ngxMonthYear = new NGXMonthYear();
+  offsetLeft: number;
+  dropdownReady: boolean;
+  allowClose: boolean;
 
-  private wasInside = false;
-
-  constructor() { }
+  constructor(private eRef: ElementRef) { }
 
   // Init
   ngOnInit() {
+    console.log('display', this.display);
+    this.options = this.ngxMonthYear.setDefaultOptions(this.options ? this.options : {});
     console.log('options', this.options);
     if (this.options.forceOpenDirection && ['left', 'right', 'middle'].indexOf(this.options.forceOpenDirection) !== -1) {
       this.openDirection = this.options.forceOpenDirection;
@@ -36,21 +41,19 @@ export class DropdownComponent implements OnInit, OnChanges {
   }
 
   // Detect when click outside of dropdown component
-  @HostListener('click')
-  clickInside() {
-    this.wasInside = true;
-  }
-  @HostListener('document:click')
-  clickout() {
-    if (!this.wasInside) {
-      this.close();
-      this.displayChange.emit(false);
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
+    if (!this.eRef.nativeElement.contains(event.target)) {
+      if (this.dropdownReady) {
+        this.close();
+        this.displayChange.emit(false);
+      }
     }
-    this.wasInside = false;
   }
 
   // Listen for changes to @Input values
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+    console.log('ngOnChanges');
     for (const propName of Object.keys(changes)) {
       // Clear state when dropdown is toggled
       if (propName === 'display' && !changes.display.firstChange) {
@@ -65,6 +68,7 @@ export class DropdownComponent implements OnInit, OnChanges {
     if (this.month === undefined || this.year === undefined) { this.clearState(); }
     setTimeout(() => {
       this.detectOrientation();
+      this.dropdownReady = true;
     }, 0);
   }
 
@@ -79,11 +83,15 @@ export class DropdownComponent implements OnInit, OnChanges {
   // monthChange event listneer for month component
   monthChange(e): void {
     this.selected.emit({ year: this.year, month: this.month });
+    if (this.options.closeOnSelect) {
+      this.close();
+    }
   }
 
   // Close dropdown
   close(): void {
     this.display = false;
+    this.dropdownReady = false;
   }
 
   // Clear month/year view state

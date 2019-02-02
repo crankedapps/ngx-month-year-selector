@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, 
 import { IMonthYearSelectorOptions } from '../../../models/IMonthYearSelectorOptions';
 
 @Component({
-  selector: 'app-year',
+  selector: 'lib-year',
   templateUrl: './year.component.html',
   styleUrls: ['./year.component.css']
 })
@@ -42,9 +42,11 @@ export class YearComponent implements OnInit, OnDestroy {
 
   // Year label click event
   yearClick() {
-    this.yearEdit = this.year;
-    this.yearEditState = true; // enable edit state
-    setTimeout(() => this.yearEditInput.nativeElement.focus(), 0); // set focus to input
+    setTimeout(() => {
+      this.yearEdit = this.year;
+      this.yearEditState = true; // enable edit state
+      setTimeout(() => this.yearEditInput.nativeElement.focus(), 0); // set focus to input
+    });
   }
 
   // Year edit input keypress event
@@ -65,7 +67,9 @@ export class YearComponent implements OnInit, OnDestroy {
 
   // Year input valid state
   yearEditValid(): boolean {
-    return !isNaN(this.yearEdit) && this.yearEdit >= this.options.yearMin && this.yearEdit <= this.options.yearMax;
+    const yearMinValid = this.options.yearMin ? this.yearEdit >= this.options.yearMin : true;
+    const yearMaxValid = this.options.yearMax ? this.yearEdit <= this.options.yearMax : true;
+    return !isNaN(this.yearEdit) && yearMinValid && yearMaxValid;
   }
 
   ngOnDestroy() {
