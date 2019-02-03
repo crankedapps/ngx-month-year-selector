@@ -1,0 +1,10 @@
+@Component()
+export class AppComponent {
+	sampleForm = this.formBuilder.group({
+		monthYear: [null, Validators.required]
+	});
+	constructor(private formBuilder: FormBuilder) { }
+	onSubmit() {
+		console.log('onSubmit', this.sampleForm.value);
+	}
+}

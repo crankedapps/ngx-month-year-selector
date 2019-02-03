@@ -1,0 +1,7 @@
+import { IMonthYearSelectorDate } from 'ngx-month-year-selector';
+
+@Component()
+export class AppComponent {
+    dataModel: IMonthYearSelectorDate;
+    constructor() { }
+}

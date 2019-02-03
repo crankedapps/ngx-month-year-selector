@@ -1,90 +1,35 @@
-<div style="margin-bottom: 2rem;">
-  <h2>ngx-month-year-selector</h2>
-  Month/year selector form control for Angular 6+ with support for ngModel binding and Reactive Forms and is independent from any UI frameworks (however should be compatible in all UI frameworks like Bootstrap & Angular Material).
-</div>
-<div style="margin-bottom: 2rem;">
-  <h2>ngModel binding:</h2>
-  Label: <input [(ngModel)]="dataModel" [ngxMonthYearSelector]="options">
-  <div><b>[(ngModel)]:</b> {{ dataModel | json }}</div>
-  <div><b>Picker options:</b> {{ options | json }}</div>
-</div>
-<div style="margin-bottom: 2rem;">
-  <h2>Reactive Form</h2>
-  <div style="margin-bottom: 1rem;">
-    <form [formGroup]="sampleForm" (ngSubmit)="onSubmit()">
-      <div>Name: <input placeholder="Name" formControlName="name" name="name"></div>
-      <div style="color: red;" *ngIf="!sampleForm.controls['name'].valid && sampleForm.controls['name'].errors.minlength"
-        i18n>
-        Minimum length of 2 characters
-      </div>
-      <div>
-        Date: <input placeholder="Enter date" [ngxMonthYearSelector]="options" formControlName="monthyear">
-      </div>
-      <div>
-        <div>
-          <input type="checkbox" formControlName="maxEnabled" name="maxEnabled" id="maxEnabled">
-          <label for="maxEnabled">yearMax: <input type="number" style="width: 100px;" formControlName="max" name="max"></label>
-        </div>
-        <div>
-          <input type="checkbox" formControlName="minEnabled" name="minEnabled" id="minEnabled">
-          <label for="minEnabled">yearMin: <input type="number" style="width: 100px;" formControlName="min" name="min"></label>
-        </div>
-        <div>
-          <input type="checkbox" formControlName="inputDisabled" name="inputDisabled" id="inputDisabled">
-          <label for="inputDisabled">disabled: {{ options.disabled }}</label>
-        </div>
-        <div>
-          <input type="checkbox" formControlName="closeOnSelect" name="closeOnSelect" id="closeOnSelect">
-          <label for="closeOnSelect">closeOnSelect: {{ options.closeOnSelect }}</label>
-        </div>
-        <div>
-          <input type="checkbox" formControlName="forceOpenDirectionEnabled" name="forceOpenDirectionEnabled" id="forceOpenDirectionEnabled">
-          <label for="forceOpenDirectionEnabled">forceOpenDirection:
-            <select formControlName="forceOpenDirection" name="forceOpenDirection">
-              <option value="left">left</option>
-              <option value="right">right</option>
-              <option value="middle">middle</option>
-              <option [value]="null">auto (null)</option>
-            </select>
-          </label>
-        </div>
-        <div>
-          <input type="checkbox" formControlName="formatEnabled" name="formatEnabled" id="formatEnabled">
-          <label for="formatEnabled">format:
-            <select formControlName="format" name="format">
-              <option value="mmm yyyy">mmm yyyy</option>
-              <option value="mmmm yyyy">mmmm yyyy</option>
-              <option value="yyyy-mm">yyyy-mm</option>
-              <option value="mm-yy">mm-yy</option>
-              <option value="yyyy">yyyy</option>
-              <option value="yy">yy</option>
-              <option value="mmmm">mmmm</option>
-              <option value="mmm">mmm</option>
-              <option value="mm">mm</option>
-            </select>
-          </label>
-        </div>
-      </div>
-      <div><button type="submit" [disabled]="!sampleForm.valid">Submit</button></div>
-    </form>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <div class="navbar-brand">ngx-month-year-selector</div>
+  <div class="d-inline ml-auto">
+    <a href="https://github.com/crankedapps/ngx-month-year-selector" class="btn btn-outline-success">GitHub</a>
   </div>
-  <div>
-    <div><b>Picker Options:</b> {{ options | json }}</div>
-    <div><b>sampleForm.valid:</b> {{ sampleForm.valid }}</div>
-    <div><b>sampleForm.value:</b> {{ sampleForm.value | json }}</div>
+</nav>
+
+<main role="main" class="container">
+  <div class="mb-4">
+    Month & year selector form control for Angular 6+ with support for ngModel binding, Reactive Forms, and Events.
+    ngx-month-year-selector is independent from any UI frameworks (however should be compatible in any UI framework
+    like Bootstrap, Angular Material, etc).
   </div>
-</div>
-<div style="margin-bottom: 2rem;">
-  <h2>Directive</h2>
-  <div><b>optionsDirective:</b> {{ optionsDirective | json }}</div>
-  <div><b>inputDate.value:</b> {{ inputDate.value | json }}</div>
-  Label: <input type="text" [ngxMonthYearSelector]="optionsDirective" #inputDate autocomplete="off" readonly>
-</div>
-<div>
-  <h2>Directive as Reactive Form</h2>
-  <form [formGroup]="directiveForm">
-    <div><input placeholder="Date" formControlName="date" name="date" [ngxMonthYearSelector]="optionsDirectiveForm" autocomplete="off" readonly></div>
-    <div><b>directiveForm.valid:</b> {{ directiveForm.valid | json }}</div>
-    <div><b>directiveForm.value:</b> {{ directiveForm.value | json }}</div>
-  </form>
-</div>
+  <div class="mb-4">
+    <h3>Reactive Form</h3>
+    <app-demonav assetHtml="./assets/demodata/reactive/html.txt" assetTs="./assets/demodata/reactive/ts.txt">
+      <app-reactiveformdemo></app-reactiveformdemo>
+    </app-demonav>
+  </div>
+  <div class="mb-4">
+    <h3>ngModel binding:</h3>
+    <app-demonav assetHtml="./assets/demodata/ngmodel/html.txt" assetTs="./assets/demodata/ngmodel/ts.txt">
+      <app-modeldemo></app-modeldemo>
+    </app-demonav>
+  </div>
+  <div class="mb-4">
+    <h3>Event Emitter</h3>
+    <app-demonav assetHtml="./assets/demodata/event/html.txt" assetTs="./assets/demodata/event/ts.txt">
+      <app-eventdemo></app-eventdemo>
+    </app-demonav>
+  </div>
+  <div class="text-center font-italic" style="margin: 2rem 0;">
+    Powered by <a href="https://github.com/crankedapps/ngx-month-year-selector" target="_blank">ngx-month-year-selector</a>.
+  </div>
+</main>

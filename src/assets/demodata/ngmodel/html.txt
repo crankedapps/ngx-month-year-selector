@@ -1,0 +1,2 @@
+<label for="monthYear">Date</label>
+<input [(ngModel)]="dataModel" id="monthYear">
