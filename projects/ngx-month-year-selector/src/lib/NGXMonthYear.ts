@@ -11,7 +11,7 @@ export class NGXMonthYear {
     disabledDates: [],
     disabledDateRanges: [],
     forceOpenDirection: null,
-    format: 'mmm yyyy',
+    format: 'yyyy-mm',
     resetYearOnBlur: true,
     yearMin: null,
     yearMax: null,

@@ -1,5 +1,5 @@
 # ngx-month-year-selector
-This project is a month/year selector for for Angular 6+.  This selector differs from standard date selectors in that it only lets you select month & year and is independent from any UI frameworks.  The selector works with both ngModel binding and Reactive Forms.
+Month & year selector form control for Angular 6+ with support for ngModel binding, Reactive Forms, and Events.  ngx-month-year-selector is independent from any UI frameworks (however should be compatible in any UI framework like Bootstrap, Angular Material, etc).
 
 ## Getting Started
 

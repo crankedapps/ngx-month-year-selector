@@ -7,7 +7,7 @@ import { _getComponentHostLElementNode } from '@angular/core/src/render3/instruc
 @Component({
   selector: 'lib-dropdown',
   templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.css']
+  styleUrls: ['./dropdown.component.sass']
 })
 export class DropdownComponent implements OnInit, OnChanges {
   @Input() options: IMonthYearSelectorOptions;

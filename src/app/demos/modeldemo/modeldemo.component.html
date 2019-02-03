@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-8 col-formdemo">
+    <div class="form-group">
+      <label for="monthYearNgModel">Date</label>
+      <input class="form-control" placeholder="Select date" [ngxMonthYearSelector] [(ngModel)]="dataModel" name="monthYearNgModel" id="monthYearNgModel" autocomplete="off">
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card mb-3">
+      <div class="card-header">ngModel value</div>
+      <div class="card-body">
+        <div>{{ dataModel | json }}</div>
+      </div>
+    </div>
+  </div>
+</div>

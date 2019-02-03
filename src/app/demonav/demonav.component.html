@@ -1,0 +1,28 @@
+<div>
+  <div class="card">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+          <a class="nav-link" (click)="tabReactiveForm = 'demo'" [class.active]="tabReactiveForm == 'demo'">Demo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="tabReactiveForm = 'html'" [class.active]="tabReactiveForm == 'html'">HTML</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="tabReactiveForm = 'ts'" [class.active]="tabReactiveForm == 'ts'">TS</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <div *ngIf="tabReactiveForm == 'demo'" class="demo-content">
+        <ng-content></ng-content>
+      </div>
+      <div *ngIf="tabReactiveForm == 'html'">
+        <textarea #textareaHtml class="form-control" (click)="$event.target.select()" readonly [innerHTML]="getHtmlData()"></textarea>
+      </div>
+      <div *ngIf="tabReactiveForm == 'ts'">
+        <textarea class="form-control" (click)="$event.target.select()" readonly [innerHTML]="getTsData()">Loading...</textarea>
+      </div>
+    </div>
+  </div>
+</div>

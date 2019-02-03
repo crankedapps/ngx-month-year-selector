@@ -1,0 +1,9 @@
+import { IMonthYearSelectorDate } from 'ngx-month-year-selector';
+
+@Component()
+export class AppComponent {
+    constructor() { }
+    onDateSelected(e: IMonthYearSelectorDate): void {
+        console.log('onDateSelected', e);
+    }
+}

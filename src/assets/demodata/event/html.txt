@@ -1,0 +1,2 @@
+<label for="monthYear">Date</label>
+<input [ngxMonthYearSelector] (dateSelected)="onDateSelected($event)" id="monthYear">
