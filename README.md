@@ -1,7 +1,24 @@
 # ngx-month-year-selector
 Month & year selector form control for Angular 6+ with support for ngModel binding, Reactive Forms, and Events.  ngx-month-year-selector is independent from any UI frameworks (however should be compatible in any UI framework like Bootstrap, Angular Material, etc).
 
+Demo: https://crankedapps.github.io/ngx-month-year-selector/
+
 ## Getting Started
+
+### Install
+Install the packaging using `npm`:
+```
+npm install ngx-month-year-selector
+```
+Import `NgxMonthYearSelectorModule` into your app or feature module:
+```
+@NgModule({
+  imports: [
+    NgxMonthYearSelectorModule
+  ]
+})
+export class AppModule { }
+```
 
 ### Directive
 `ngxMonthYearSelector` directive accepts the `IMonthYearSelectorOptions` options model described below as a value and can be used on any HTML input text element.
