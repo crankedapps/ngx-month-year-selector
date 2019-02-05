@@ -5,13 +5,14 @@ Demo: https://crankedapps.github.io/ngx-month-year-selector/
 
 ## Getting Started
 
-### Install
+### Installation
 Install the packaging using `npm`:
 ```
 npm install ngx-month-year-selector
 ```
 Import `NgxMonthYearSelectorModule` into your app or feature module:
 ```
+import { NgxMonthYearSelectorModule } from 'ngx-month-year-selector';
 @NgModule({
   imports: [
     NgxMonthYearSelectorModule
