@@ -6,8 +6,8 @@
     "email": "john@crankedapps.com"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/crankedapps/ngx-month-year-selector.git"
+    "type": "git",
+    "url": "https://github.com/crankedapps/ngx-month-year-selector.git"
   },
   "bugs": {
     "url": "https://github.com/manishjanky/ngx-select-dropdown/issues"
