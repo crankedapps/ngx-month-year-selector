@@ -1,0 +1,5 @@
+<form [formGroup]="sampleForm" (ngSubmit)="onSubmit()">
+	<label for="monthYear">Date</label>
+	<input formControlName="monthYear" id="monthYear">
+	<button type="submit" [disabled]="!sampleForm.valid">Submit</button>
+</form>
