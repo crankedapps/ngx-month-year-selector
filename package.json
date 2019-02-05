@@ -1,6 +1,18 @@
 {
   "name": "ngx-month-year-selector-demo",
   "version": "1.0.0",
+  "author": {
+    "name": "John Endicott",
+    "email": "john@crankedapps.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/crankedapps/ngx-month-year-selector.git"
+  },
+  "bugs": {
+    "url": "https://github.com/manishjanky/ngx-select-dropdown/issues"
+  },
+  "homepage": "https://github.com/crankedapps/ngx-month-year-selector#readme",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,16 +20,14 @@
     "build:lib": "ng build ngx-month-year-selector",
     "watch:lib": "ng build ngx-month-year-selector --watch",
     "package:lib": "cd dist/ngx-month-year-selector && npm pack",
-    "package": "npm run build:lib && npm run package:lib",
+    "package": "npm run build:lib && npm run package:lib && npm run copy:docs",
+    "copy:docs": "npm run copy:readme && npm run copy:license",
+    "copy:readme": "copy .\\README.md .\\dist\\ngx-month-year-selector",
+    "copy:license": "copy .\\LICENSE .\\dist\\ngx-month-year-selector",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "repository": {
-    "type" : "git",
-    "url" : "https://github.com/crankedapps/ngx-month-year-selector.git"
-  },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^6.1.0",
     "@angular/common": "^6.1.0",
