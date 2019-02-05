@@ -36,7 +36,6 @@ It contains the following typed properties:
 | closeOnSelect 	| boolean 	| If true, dialog automatically closes after both year & month selection 	|
 | disabledDates 	| {  year: number, month: number }[] 	| Disabled year/month combinations.  	|
 | disabledDateRanges 	| [{ year: number, month: number }, { year: number, month: number }][] 	| Disabled date ranges.  Array of array objects where first element is start date and second element is end date. 	|
-| forceOpenDirection 	| 'left' | 'right' | 'middle' 	| Force dialog to open with specific direction 	|
 | format 	| string 	| Format of input value (ex: 'yyyy-mm yy mmm mmmm') 	|
 | resetYearOnBlur 	| boolean 	| Reset year in when dropdown closes 	|
 | yearMax 	| number 	| Maximum year allowed 	|
@@ -48,4 +47,4 @@ It contains the following typed properties:
 * `npm run watch:lib` build angular library & watch for changes
 
 ## Styling
-
+Use the global styling sheet in Angular to style the element as you wish.

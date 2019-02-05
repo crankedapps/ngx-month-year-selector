@@ -4,7 +4,7 @@ import { IMonthYearSelectorOptions } from '../../../models/IMonthYearSelectorOpt
 @Component({
   selector: 'lib-year',
   templateUrl: './year.component.html',
-  styleUrls: ['./year.component.css']
+  styleUrls: ['./year.component.sass']
 })
 export class YearComponent implements OnInit, OnDestroy {
   @Input() options: IMonthYearSelectorOptions;

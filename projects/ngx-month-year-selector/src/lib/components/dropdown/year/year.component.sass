@@ -1,0 +1,71 @@
+.year-wrapper 
+    display: flex
+    align-items: center
+    margin: 5% calc(33% / 7 - 16px)
+
+.year-spacer
+    flex: 1 1 auto
+
+.year-label 
+    position: relative
+    line-height: 36px
+    padding: 0 16px
+    font-size: 14px
+    font-weight: 500
+    margin: 0
+    vertical-align: baseline
+    text-decoration: none
+    cursor: pointer
+
+.year-nav
+    position: relative
+    width: 40px
+    height: 40px
+    line-height: 40px
+    border-radius: 50%
+    cursor: pointer
+    &:hover
+        background-color: rgba(0,0,0,.04)
+
+.arrow
+    padding: 0
+    min-width: 0
+
+.arrow.arrow--right::after, .arrow.arrow--left::after
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    position: absolute
+    content: ''
+    margin: 15.5px
+    border: 0 solid rgba(0,0,0,.54)
+    border-top-width: 2px
+
+.arrow.arrow--right::after
+    border-right-width: 2px
+    transform: translateX(-2px) rotate(45deg)
+
+.arrow.arrow--left::after
+    border-left-width: 2px
+    transform: translateX(2px) rotate(-45deg)
+
+.year-edit input[type="number"],
+.year-edit input[type="number"]:focus
+    display: inline-block
+    font-size: 14px
+    width: 4.5em
+    padding: 0.1em
+    border: 1px solid #666
+    border-radius: 3px
+    margin: 0 16px
+    outline: none
+
+.year-edit input[type=number]::-webkit-inner-spin-button, 
+.year-edit input[type=number]::-webkit-outer-spin-button
+    -webkit-appearance: none
+    margin: 0
+
+.year-edit--invalid, .year-edit--invalid:focus
+    border: 1px solid #ff0000 !important
+    outline: none

@@ -6,7 +6,7 @@ import { monthAbbrv } from '../../../lang/en.lang';
 @Component({
   selector: 'lib-month',
   templateUrl: './month.component.html',
-  styleUrls: ['./month.component.css']
+  styleUrls: ['./month.component.sass']
 })
 export class MonthComponent implements OnInit {
   @Input() options: IMonthYearSelectorOptions;

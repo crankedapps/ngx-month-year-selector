@@ -31,9 +31,6 @@ export class DropdownComponent implements OnInit, OnChanges {
     console.log('display', this.display);
     this.options = this.ngxMonthYear.setDefaultOptions(this.options ? this.options : {});
     console.log('options', this.options);
-    if (this.options.forceOpenDirection && ['left', 'right', 'middle'].indexOf(this.options.forceOpenDirection) !== -1) {
-      this.openDirection = this.options.forceOpenDirection;
-    }
     if (!this.dateSelected) {
       this.month = (new Date).getMonth();
       this.year = (new Date).getFullYear();
@@ -67,7 +64,6 @@ export class DropdownComponent implements OnInit, OnChanges {
     console.log('onDisplayEnabled', this.month, this.year, this.dateSelected);
     if (this.month === undefined || this.year === undefined) { this.clearState(); }
     setTimeout(() => {
-      this.detectOrientation();
       this.dropdownReady = true;
     }, 0);
   }
@@ -100,47 +96,6 @@ export class DropdownComponent implements OnInit, OnChanges {
     this.year = this.options.yearStart ? this.options.yearStart :
       this.dateSelected ? this.dateSelected.year : (new Date).getFullYear();
     console.log('clearState', this.month, this.year);
-  }
-
-  // On window resize
-  onResize(event): void {
-    this.detectOrientation();
-  }
-
-  // Automatically detect dropdown orientation (open right, middle, left) based on visibility in viewport
-  detectOrientation(): void {
-    // If forced orientation set in options, use those
-    if (this.options.forceOpenDirection) { this.openDirection = this.options.forceOpenDirection; return; }
-    // Calculate dropdown orientation to display dropdown based position in viewport
-    const dropdownDimensions = this.dropdownWrapper.nativeElement.getBoundingClientRect();
-    const overflowRight = dropdownDimensions.right - document.documentElement.clientWidth;
-    let distToRight, distToLeft;
-    if (this.openDirection === 'left') {
-      distToRight = document.documentElement.clientWidth - dropdownDimensions.right;
-      distToLeft = dropdownDimensions.right;
-    } else if (this.openDirection === 'right') {
-      distToRight = document.documentElement.clientWidth - dropdownDimensions.left;
-      distToLeft = dropdownDimensions.left;
-    } else {
-      distToRight = document.documentElement.clientWidth - (dropdownDimensions.right - (dropdownDimensions.width / 2));
-      distToLeft = dropdownDimensions.left + (dropdownDimensions.width / 2);
-    }
-    // If dropdown right overflow viewport, and distance available on left, switch to left orientation
-    if (overflowRight > 0 && distToLeft > dropdownDimensions.width) {
-      this.openDirection = 'left';
-      return;
-    }
-    // If dropdown orientated to left/middle amd space available again to right, orientate back to right (default)
-    if (this.openDirection !== 'right' && overflowRight < 0 && distToRight > dropdownDimensions.width) {
-      this.openDirection = 'right';
-      return;
-    }
-    // If no space on either side, orientate middle
-    if (this.openDirection !== 'middle' && (dropdownDimensions.left < 0 || overflowRight > 0) && dropdownDimensions.width <= document.documentElement.clientWidth) {
-      this.openDirection = 'middle';
-      return;
-    }
-    console.log('detectEnd');
   }
 
 }

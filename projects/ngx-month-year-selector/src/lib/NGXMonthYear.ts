@@ -10,7 +10,6 @@ export class NGXMonthYear {
     closeOnSelect: true,
     disabledDates: [],
     disabledDateRanges: [],
-    forceOpenDirection: null,
     format: 'yyyy-mm',
     resetYearOnBlur: true,
     yearMin: null,

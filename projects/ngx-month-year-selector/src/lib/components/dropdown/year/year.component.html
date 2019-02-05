@@ -1,17 +1,14 @@
 <div class="year-wrapper">
-  <div class="year-nav">
-    <a (click)="yearBack()" class="year-nav-link" *ngIf="!options.yearMin || year > options.yearMin">
-      <span class="arrow arrow--left"></span>
-    </a>
-  </div>
   <div class="year-label" *ngIf="!yearEditState" (click)="yearClick()">{{ year }}</div>
   <div class="year-edit" *ngIf="yearEditState">
     <input type="number" [min]="options.yearMin" [max]="options.yearMax" [(ngModel)]="yearEdit" (blur)="yearBlur()" (keypress)="yearKeyPress($event)"
      [class.year-edit--invalid]="!yearEditValid()" autocomplete="off" #yearEditInput>
   </div>
-  <div class="year-nav">
-    <a (click)="yearForward()" class="year-nav-link" *ngIf="!options.yearMax || year < options.yearMax">
-      <span class="arrow arrow--right"></span>
-    </a>
+  <div class="year-spacer"></div>
+  <div class="year-nav" (click)="yearBack()" *ngIf="!options.yearMin || year > options.yearMin">
+    <span class="arrow arrow--left"></span>
+  </div>
+  <div class="year-nav" (click)="yearForward()" *ngIf="!options.yearMax || year < options.yearMax">
+    <span class="arrow arrow--right"></span>
   </div>
 </div>
