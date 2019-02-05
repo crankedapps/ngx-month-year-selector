@@ -4,7 +4,6 @@ export interface IMonthYearSelectorOptions {
     disabledDates?: IMonthYearSelectorDate[]; // Disable individual dates
     disabledDateRanges?: [IMonthYearSelectorDate, IMonthYearSelectorDate][]; // Disable date ranges
     format?: string; // Format for year (yyyy, yy, mmmm, mmm, mm)
-    forceOpenDirection?: 'left' | 'right' | 'middle'; // Open dialog: 'left', 'right', 'middle'
     resetYearOnBlur?: boolean; // Reset year view in dropdown on blur
     yearMax?: number; // Minimum year range
     yearMin?: number; // Maximum year range

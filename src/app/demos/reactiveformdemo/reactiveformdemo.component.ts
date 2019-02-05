@@ -17,7 +17,6 @@ export class ReactiveformComponent implements OnInit, OnDestroy {
     closeOnSelect: true,
     yearStart: 2010,
     format: 'yyyy mmm', // 'yyyy-mm yy mmm mmmm',
-    forceOpenDirection: 'left', // left, right, middle
     resetYearOnBlur: true,
     disabledDates: [
       { year: 2018, month: 10 } // individual date
@@ -50,8 +49,6 @@ export class ReactiveformComponent implements OnInit, OnDestroy {
     min: [(new Date).getFullYear() - 10],
     inputDisabled: [false],
     closeOnSelect: [true],
-    forceOpenDirectionEnabled: [false],
-    forceOpenDirection: ['left'],
     formatEnabled: [false],
     format: ['mmm yyyy']
   });
@@ -71,8 +68,6 @@ export class ReactiveformComponent implements OnInit, OnDestroy {
     this.subMinCheck = this.optionsForm.controls.minEnabled.valueChanges.subscribe(() => { this.updateMin(); });
     this.subDisabled = this.optionsForm.controls.inputDisabled.valueChanges.subscribe(val => { this.updateDisabled(); });
     this.subCloseOnSelect = this.optionsForm.controls.closeOnSelect.valueChanges.subscribe(() => { this.updateCloseOnSelect(); });
-    this.subForceOpenDirectionCheck = this.optionsForm.controls.forceOpenDirectionEnabled.valueChanges.subscribe(() => { this.updateForceOpenDirection(); });
-    this.subForceOpenDirection = this.optionsForm.controls.forceOpenDirection.valueChanges.subscribe(() => { this.updateForceOpenDirection(); });
     this.subFormatEnabled = this.optionsForm.controls.formatEnabled.valueChanges.subscribe(() => { this.updateFormat(); });
     this.subFormat = this.optionsForm.controls.format.valueChanges.subscribe(() => { this.updateFormat(); });
   }
@@ -103,11 +98,6 @@ export class ReactiveformComponent implements OnInit, OnDestroy {
   updateCloseOnSelect() {
     console.log('updateCloseOnSelect', this.optionsForm.controls.closeOnSelect.value);
     this.options.closeOnSelect = this.optionsForm.controls.closeOnSelect.value;
-  }
-
-  updateForceOpenDirection() {
-    console.log('updateForceOpenDirection', this.optionsForm.controls.forceOpenDirection.value);
-    this.options.forceOpenDirection = this.optionsForm.controls.forceOpenDirectionEnabled.value ? this.optionsForm.controls.forceOpenDirection.value : null;
   }
 
   updateFormat() {

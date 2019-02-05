@@ -2,8 +2,8 @@
   [class.dropdown-wrapper--open-left]="openDirection == 'left'" 
   [class.dropdown-wrapper--open-middle]="openDirection == 'middle'" 
   [style.left]="offsetLeft ? offsetLeft + 'px' : null"
-  (window:resize)="onResize($event)" 
   *ngIf="display">
   <lib-year [options]="options" [(year)]="year"></lib-year>
+  <div class="dropdown-divider"></div>
   <lib-month [options]="options" [dateSelected]="dateSelected" [(month)]="month" [year]="year" (monthChange)="monthChange($event)"></lib-month>
 </div>

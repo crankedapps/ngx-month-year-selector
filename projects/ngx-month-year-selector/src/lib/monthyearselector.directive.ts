@@ -38,9 +38,6 @@ export class MonthyearselectorDirective implements OnInit, OnDestroy, OnChanges 
       // update input value
       this.selectedDate = val;
       this.updateValue();
-      // dispatch events
-      this.el.nativeElement.dispatchEvent(new Event('input'));
-      this.dateSelected.emit(val);
     });
   }
 
@@ -96,6 +93,8 @@ export class MonthyearselectorDirective implements OnInit, OnDestroy, OnChanges 
   // Update value with latest selected date
   updateValue(): void {
     this.renderer.setProperty(this.el.nativeElement, 'value', this.getFormattedValue());
+    this.el.nativeElement.dispatchEvent(new Event('input'));
+    this.dateSelected.emit(this.selectedDate);
   }
 
   // Get formatted date value
